@@ -1,3 +1,5 @@
+https://reqbin.com/curl
+
 Cookie to html Planning(work) :
 curl --cookie "JSESSIONID=cookie" https://aurion.junia.com/faces/Planning.xhtml
 
