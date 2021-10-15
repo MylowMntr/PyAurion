@@ -5,32 +5,34 @@ password = str(os.environ.get("passaurion"))
 
 conn = http.client.HTTPSConnection("aurion.junia.com")
 
+
+
 headers = ('''
     Connection: keep-alive
     Content-type: application/x-www-form-urlencoded
 
     username{'''+username+'''}
     &password{'''+password+'''}
-        ''')
+    ''')
 conn.request("POST", "/login", headers)
 res = conn.getresponse()
-data = res.headers
-datar = res.read()
-print(data)
+datah = res.headers
+data = res.read()
+# print(datah)
 
-cookies = ((data).get('Set-Cookie'))
+
+cookies = ((datah).get('Set-Cookie'))
 cookies = str(cookies.rstrip("; Path=/; Secure; HttpOnly"))
-print(cookies)
+# print(cookies)
 
 
 headers = ('''
-        Cookie: '''+cookies+'''
+    Connection: keep-alive
+    Cookie: '''+cookies+'''
     ''')
-
 conn.request("GET", "/", headers)
-
 res = conn.getresponse()
-data = res.headers
-datar = res.read()
-print(data)
+datah = res.headers
+data = res.read()
+print(data.decode('utf-8'))
 
