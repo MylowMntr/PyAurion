@@ -15,6 +15,7 @@ headers = ('''
 conn.request("POST", "/login", headers)
 res = conn.getresponse()
 data = res.headers
+datar = res.read()
 print(data)
 
 cookies = ((data).get('Set-Cookie'))
@@ -26,9 +27,10 @@ headers = ('''
         Cookie: '''+cookies+'''
     ''')
 
-conn.request("GET", "/", headers=headers)
+conn.request("GET", "/", headers)
 
 res = conn.getresponse()
-data = res.read()
+data = res.headers
+datar = res.read()
+print(data)
 
-print(data.decode("utf-8"))
