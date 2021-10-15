@@ -1,47 +1,50 @@
 import requests
 import os
+from requests.auth import *
+from getPlanningXML import getPlanningXML
+from requests import Request, Session
+
 username = str(os.environ.get("mailaurion"))
 password = str(os.environ.get("passaurion"))
 
 urll = 'https://aurion.junia.com/faces/Login.xhtml'
-url = 'https://aurion.junia.com/faces/Planning.xhtml'
 log = 'https://aurion.junia.com/login'
+url = 'https://aurion.junia.com/faces/Planning.xhtml'
 
-data = str('username=' + username + '&password=' + password)
-print(data)
+headers = {"Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+"Accept-Language": "fr-FR",
+"Accept-Encoding": "gzip, deflate, br",
+"Content-Type": "application/x-www-form-urlencoded",
+"Origin": "https://aurion.junia.com",
+"Connection": "keep-alive",
+"Upgrade-Insecure-Requests": "1",
+"Sec-Fetch-Dest": "document",
+"Sec-Fetch-Mode": "navigate",
+"Sec-Fetch-Site": "same-origin",
+"Sec-Fetch-User": "?1"}
 
-# https://stackoverflow.com/questions/26615756/python-requests-module-sends-json-string-instead-of-x-www-form-urlencoded-param
+# data = ("username=" + username + "&password=" + password)
+# data = {'username=': username,'&password=': password}
+# # print(data)
 
 
 ##methode POST
-rep1 = requests.post(urll, data=data)
-rep2 = requests.post(log, data=data)
-rep3 = requests.post(url, data=data)
+# rep1 = requests.post(log, data=data, headers=headers)
+session = requests.Session()
+session.auth = (username,password)
+
+auth = session.post(log)
+rep1 = session.get(urll)
+
+
 # print(rep1.text)
+print(rep1.status_code)
 print(rep1.headers)
-# print(rep2.text)
-print(rep2.headers)
-# print(rep3.text)
-print(rep3.headers)
 
-##methode GET
-# rep1 = requests.get(urll, data=data)
-# rep2 = requests.get(log, data=data)
-# rep3 = requests.get(url, data=data)
-# # print(rep1.text)
-# print(rep1.headers)
-# # print(rep2.text)
-# print(rep2.headers)
-# # print(rep3.text)
-# print(rep3.headers)
 
-##methode PUT
-# rep1 = requests.put(urll, data=data)
-# rep2 = requests.put(log, data=data)
-# rep3 = requests.put(url, data=data)
-# # print(rep1.text)
-# print(rep1.headers)
-# # print(rep2.text)
-# print(rep2.headers)
-# # print(rep3.text)
-# print(rep3.headers)
+
+# cookies = ((rep1.headers).get('Set-Cookie'))
+# cookies = str(cookies.rstrip("; Path=/; Secure; HttpOnly"))
+# print(cookies)
+
+# print(getPlanningXML(url,cookies))
