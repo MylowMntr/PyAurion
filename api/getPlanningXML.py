@@ -18,6 +18,6 @@ def getPlanningXML(url ,cookie):
     
     # print(headers)
     # print(data)
-
+    da
     resp = requests.post(url, headers=headers, data=data)
     return(resp.text)

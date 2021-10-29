@@ -7,7 +7,7 @@ username{USERNAME}
 
 GET https://aurion.junia.com
 Connection: keep-alive
-Cookie: JSESSIONID={4F86A994DC0DE47E76C1EB21C49A21EC}
+Cookie: JSESSIONID={C4DA6F03216C2B469B9B79FCCCB4ABAA}
 
 
 https://reqbin.com/curl
