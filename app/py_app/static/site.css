@@ -30,3 +30,12 @@
     padding: 5px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.preformatted{
+    color: black;
+}
+
+table, td, tr{
+    border: 1px solid black;
+    border-collapse: collapse;
+}

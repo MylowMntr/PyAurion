@@ -6,6 +6,8 @@
         <title>Notes</title>
     </head>
     <body>
-        {{ notes }}
+        <table class="notes">
+            {{ notes | safe }}
+        </table>
     </body>
 </html>

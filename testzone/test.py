@@ -1,0 +1,11 @@
+data = ''' <?xml version='1.0' encoding='UTF-8'?> <partial-response id="j_id1"><changes><update id="form:messages"><![CDATA[<div id="form:messages" class="ui-messages ui-widget" aria-live="polite"></div>]]></update><update id="form:j_idt117"><![CDATA[{"events" : [{"id": "15253545","title": " - ISEN B802 (H)\nModule de Mathématiques 2 : Analyse\n10:20 - 12:20\nMadame SAINI","start": "2022-01-03T10:20:00+0100","end": "2022-01-03T12:20:00+0100","allDay":false,"editable":true,"className":"est-epreuve"},{"id": "21632891","title": " - ISEN C854 - Salle DS\nModule de Compétences Relationnelles\n10:20 - 12:20\nMadame CORMAN","start": "2022-01-04T10:20:00+0100","end": "2022-01-04T12:20:00+0100","allDay":false,"editable":true,"className":"est-epreuve"},{"id": "21632906","title": " - ISEN C304 - Amphi JND (H)\nModule d'Electronique\n10:20 - 12:20\nMadame PHILIPPE","start": "2022-01-05T10:20:00+0100","end": "2022-01-05T12:20:00+0100","allDay":false,"editable":true,"className":"est-epreuve"},{"id": "21632916","title": " - ISEN C854 - Salle DS\nModule de Programmation 1 : Fondamentaux\n10:20 - 12:20\nMadame BENYOUSSEF","start": "2022-01-06T10:20:00+0100","end": "2022-01-06T12:20:00+0100","allDay":false,"editable":true,"className":"est-epreuve"},{"id": "21632932","title": " - ISEN C854 - Salle DS\nModule de Technologies Web\n10:20 - 12:20\nMadame BENYOUSSEF","start": "2022-01-07T10:20:00+0100","end": "2022-01-07T12:20:00+0100","allDay":false,"editable":true,"className":"est-epreuve"}]}]]></update><update id="form:j_idt133"><![CDATA[<div id="form:j_idt133" class="ui-messages ui-widget" aria-live="polite"></div>]]></update><update id="form:j_idt227"><![CDATA[<span id="form:j_idt227"></span><script id="form:j_idt227_s" type="text/javascript">$(function(){PrimeFaces.cw('Growl','widget_form_j_idt227',{id:'form:j_idt227',sticky:true,life:6000,escape:true,msgs:[]});});</script>]]></update><update id="j_id1:javax.faces.ViewState:0"><![CDATA[-8146307270105953595:-1972248697365939808]]></update></changes></partial-response> '''
+
+import json
+x = data.split('''[CDATA[{"events" : ''')
+x = x[1].split("}]]")
+x = x[0]
+#le tableau :
+data = json.loads(x, strict=False)
+k = len(data)
+for i in range(k):
+    print(data[i]["title"])

@@ -1,4 +1,6 @@
 from datetime import datetime
+import locale
+locale.setlocale(locale.LC_ALL, 'fr_FR.utf8')
 from flask import Flask, render_template
 from . import app
 from .api import getnotes, getplanning
@@ -34,6 +36,7 @@ def plan():
         return render_template(
         "plan.html",
         plan=getplanning.main(),
+        datetime=datetime,
     )
         
         

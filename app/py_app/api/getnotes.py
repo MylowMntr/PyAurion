@@ -169,7 +169,10 @@ def POSTnote(viewS, cookies):
     resR = res.read()
     # print(resS)
     # print(resH)
-    return(resR.decode('utf-8'))
+    x = resR.decode('utf-8')
+    x = x.split("[CDATA[")
+    x = x[3].split("]]")
+    return(x[0])
     
 
 cookies = Cookies(POSTlogin(username,password))

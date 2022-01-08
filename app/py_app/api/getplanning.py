@@ -113,7 +113,7 @@ def POSTplan(viewS, cookies):
     #date du lundi en Milliseconde
     Monday = Monday.strftime("%d.%m.%Y")+' 00:00:00,00'
     Monday = int((datetime.strptime(Monday,'%d.%m.%Y %H:%M:%S,%f')).timestamp()* 1000)
-    # print(Monday)
+    # UNE SEMAINE = 604800000ms
 
     #calcul de l'offset 
     tz = datetime.now()
@@ -175,7 +175,15 @@ def POSTplan(viewS, cookies):
     resR = res.read()
     # print(resS)
     # print(resH)
-    return(resR.decode('utf-8'))
+    
+    import json
+    x = resR.decode("utf-8")
+    x = x.split('''[CDATA[{"events" : ''')
+    x = x[1].split("}]]")
+    x = x[0]
+    #le tableau :
+    plan = json.loads(x, strict=False)
+    return(plan)
 
 
 cookies = Cookies(POSTlogin(username,password))

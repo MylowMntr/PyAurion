@@ -6,6 +6,16 @@
         <title>Planning</title>
     </head>
     <body>
-        {{ plan }}
+        <table>
+        <tr>
+        {%for i in range(plan|length)%}
+                <td>{{ (datetime.strptime((plan[i]["start"]), "%Y-%m-%dT%H:%M:%S%z")).strftime("%A") }}</td>
+        {%endfor%}    
+        </tr>
+        <tr>
+        {%for i in range(plan|length)%}
+                <td>{{ plan[i]["title"] }}</td>
+        {%endfor%} 
+        </table>
     </body>
 </html>
