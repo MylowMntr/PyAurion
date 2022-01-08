@@ -138,24 +138,21 @@ def POSTplan(viewS, cookies):
     
 
     payload = ("javax.faces.partial.ajax=true&javax.faces.source=form%3Aj_idt" + formId
-                            + "&javax.faces.partial.execute=form%3Aj_idt" + formId
-                            + "&javax.faces.partial.render=form%3Aj_idt" + formId
-                            + "&form%3Aj_idt" + formId + "=form%3Aj_idt" + formId
-                            + "&form%3Aj_idt" + formId + "_start=" + start
-                            + "&form%3Aj_idt" + formId + "_end=" + end
-                            + "&form=form"
-                            + "&form%3AlargeurDivCenter=1219"
-                            + "&form%3Adate_input=" + monday
-                            + "&form%3Aweek=" + week_number + "-" + year_number
-                            + "&form%3Aj_idt" + formId
-                            + "_view=agendaWeek&form%3AoffsetFuseauNavigateur=" + tz
-                            + "&form%3Aonglets_activeIndex=0&form%3Aonglets_scrollState=0&form%3Aj_idt236_focus=&form%3Aj_idt236_input=44323"
-                            + "&javax.faces.ViewState="+ urllib.parse.quote(viewS))
+                + "&javax.faces.partial.execute=form%3Aj_idt" + formId
+                + "&javax.faces.partial.render=form%3Aj_idt" + formId
+                + "&form%3Aj_idt" + formId + "=form%3Aj_idt" + formId
+                + "&form%3Aj_idt" + formId + "_start=" + start
+                + "&form%3Aj_idt" + formId + "_end=" + end
+                + "&form=form"
+                + "&form%3AlargeurDivCenter=1219"
+                + "&form%3Adate_input=" + monday
+                + "&form%3Aweek=" + week_number + "-" + year_number
+                + "&form%3Aj_idt" + formId
+                + "_view=agendaWeek&form%3AoffsetFuseauNavigateur=" + tz
+                + "&form%3Aonglets_activeIndex=0&form%3Aonglets_scrollState=0&form%3Aj_idt236_focus=&form%3Aj_idt236_input=44323"
+                + "&javax.faces.ViewState="+ urllib.parse.quote(viewS))
     
-    # payload = "javax.faces.partial.ajax=true&javax.faces.source=form%3Aj_idt117&javax.faces.partial.execute=form%3Aj_idt117&javax.faces.partial.render=form%3Aj_idt117&form%3Aj_idt117=form%3Aj_idt117&form%3Aj_idt117_start=1641164400000&form%3Aj_idt117_end=1641682800000&form=form&form%3AlargeurDivCenter=&form%3Adate_input=03%2F01%2F2022&form%3Aweek=1-2022&form%3Aj_idt117_view=agendaWeek&form%3AoffsetFuseauNavigateur=-3600000&form%3Aonglets_activeIndex=0&form%3Aonglets_scrollState=0&form%3Aj_idt236_focus=&form%3Aj_idt236_input=44323&javax.faces.ViewState=7573849282595802317%3A5578838295812736934"
-    print(payload)
-    # payload = iter(payloa)  
-    lenP = str(len(payload)+1)
+    # print(payload)
     
     conn = http.client.HTTPSConnection("aurion.junia.com")
     headers = {"Accept": "application/xml, text/xml, */*; q=0.01",
@@ -176,7 +173,7 @@ def POSTplan(viewS, cookies):
     resS = res.status
     resH = res.headers
     resR = res.read()
-    print(resS)
+    # print(resS)
     # print(resH)
     print(resR.decode('utf-8'))
     pass
