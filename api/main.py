@@ -151,11 +151,15 @@ def POSTplan(viewS, cookies):
                             + "_view=agendaWeek&form%3AoffsetFuseauNavigateur=" + tz
                             + "&form%3Aonglets_activeIndex=0&form%3Aonglets_scrollState=0&form%3Aj_idt236_focus=&form%3Aj_idt236_input=44323"
                             + "&javax.faces.ViewState="+ urllib.parse.quote(viewS))
+    
+    # payload = "javax.faces.partial.ajax=true&javax.faces.source=form%3Aj_idt117&javax.faces.partial.execute=form%3Aj_idt117&javax.faces.partial.render=form%3Aj_idt117&form%3Aj_idt117=form%3Aj_idt117&form%3Aj_idt117_start=1641164400000&form%3Aj_idt117_end=1641682800000&form=form&form%3AlargeurDivCenter=&form%3Adate_input=03%2F01%2F2022&form%3Aweek=1-2022&form%3Aj_idt117_view=agendaWeek&form%3AoffsetFuseauNavigateur=-3600000&form%3Aonglets_activeIndex=0&form%3Aonglets_scrollState=0&form%3Aj_idt236_focus=&form%3Aj_idt236_input=44323&javax.faces.ViewState=7573849282595802317%3A5578838295812736934"
     print(payload)
+    # payload = iter(payloa)  
     lenP = str(len(payload)+1)
-
+    
     conn = http.client.HTTPSConnection("aurion.junia.com")
     headers = {"Accept": "application/xml, text/xml, */*; q=0.01",
+                "Host": "aurion.junia.com",
                 "Accept-Language": "fr-FR",
                 "Accept-Encoding": "gzip, deflate, br",
                 "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
@@ -165,10 +169,9 @@ def POSTplan(viewS, cookies):
                 "Sec-Fetch-Dest": "empty",
                 "Sec-Fetch-Mode": "cors",
                 "Sec-Fetch-Site": "same-origin",
-                'Cookie': cookies,
-                "Content-Length": lenP
+                'Cookie': cookies
         }
-    conn.request("POST", "/faces/Planning.xhtml", payload, headers)
+    conn.request("POST", "/faces/Planning.xhtml", body=payload, headers=headers, encode_chunked=True)
     res = conn.getresponse()
     resS = res.status
     resH = res.headers
