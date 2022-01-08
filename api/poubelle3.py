@@ -226,7 +226,7 @@ timing=datetime.now()
 
 timing=datetime.now()
 # GETplanning(cookies,baseURL)
-# print(datetime.now()-timing)
+print(datetime.now()-timing)
 
 timing=datetime.now()
 # POSTplanA(cookies)
