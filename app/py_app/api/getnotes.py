@@ -107,7 +107,7 @@ def POSTmainn(viewS, cookies):
     pass
 
 #requete GET avant POST
-def GETnotes(cookies,baseURL):
+def GETnote(cookies,baseURL):
     headers = {
         'Content-type': "application/x-www-form-urlencoded",
         'Connection': "keep-alive",
@@ -119,8 +119,8 @@ def GETnotes(cookies,baseURL):
     # print(response.status_code)
     return response.text
 
-def POSTnotes(viewS, cookies):
-    viewS = ViewState(GETnotes(cookies,baseURL))
+def POSTnote(viewS, cookies):
+    viewS = ViewState(GETnote(cookies,baseURL))
     start = str(0)
     rows = str(10000)
     # payload = ("javax.faces.partial.ajax=true&javax.faces.source=form%3Aj_idt149&javax.faces.partial.execute=form%3AdivRecherche&"
@@ -169,16 +169,19 @@ def POSTnotes(viewS, cookies):
     resR = res.read()
     # print(resS)
     # print(resH)
-    print(resR.decode('utf-8'))
-    pass
+    return(resR.decode('utf-8'))
+    
 
 cookies = Cookies(POSTlogin(username,password))
 viewS = ViewState(GETmain(cookies,baseURL))
 
-GETmain(cookies,baseURL)
-POSTmain(viewS,cookies)
-POSTmainn(viewS,cookies)
-GETnotes(cookies,baseURL)
-POSTnotes(viewS,cookies)
+
+def main():
+    GETmain(cookies,baseURL)
+    POSTmain(viewS,cookies)
+    POSTmainn(viewS,cookies)
+    GETnote(cookies,baseURL)
+    
+    return(POSTnote(viewS,cookies))
 
 # print(cookies, viewS)

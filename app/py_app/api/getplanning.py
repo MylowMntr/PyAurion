@@ -80,7 +80,7 @@ def POSTmain(viewS, cookies):
     pass
 
 #requete GET avant POST
-def GETplanning(cookies,baseURL):
+def GETplan(cookies,baseURL):
     headers = {
         'Content-type': "application/x-www-form-urlencoded",
         'Connection': "keep-alive",
@@ -95,7 +95,7 @@ def GETplanning(cookies,baseURL):
 
 def POSTplan(viewS, cookies):
     
-    viewS = ViewState(GETplanning(cookies,baseURL))
+    viewS = ViewState(GETplan(cookies,baseURL))
 
     #Nbr de la semaine actuelle
     d = date.today()
@@ -175,16 +175,16 @@ def POSTplan(viewS, cookies):
     resR = res.read()
     # print(resS)
     # print(resH)
-    print(resR.decode('utf-8'))
-    pass
+    return(resR.decode('utf-8'))
 
 
 cookies = Cookies(POSTlogin(username,password))
 viewS = ViewState(GETmain(cookies,baseURL))
 
-GETmain(cookies,baseURL)
-POSTmain(viewS,cookies)
-GETplanning(cookies,baseURL)
-POSTplan(viewS,cookies)
+def main():
+    GETmain(cookies,baseURL)
+    POSTmain(viewS,cookies)
+    GETplan(cookies,baseURL)
+    return POSTplan(viewS,cookies)
 
 # print(cookies, viewS)

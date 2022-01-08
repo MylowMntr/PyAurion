@@ -1,1 +1,1 @@
-from hello_app.webapp import app
+from py_app.webapp import app
