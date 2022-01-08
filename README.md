@@ -3,7 +3,7 @@ Projet personnel de connexion à Aurion en Python !
 
 ## Description
 Aurion n'ayant pas d'API, il est difficile de s'y connecter. Je crée donc une WebApp pour permettre la visualisation des emplois du temps ainsi que des notes (ainsi que les moyennes).
-Cette dernière est en Python / Django pour être disponible sous Android / iOS.
+Cette dernière est en Python / Flask pour être disponible sous Android / iOS.
 
 ## Merci
 Au projet [Scorpion](https://github.com/LiamAbyss/Scorpion) et leurs développeurs qui m'ont apporté leur précieuse aide !
