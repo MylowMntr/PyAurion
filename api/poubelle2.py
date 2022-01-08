@@ -60,7 +60,6 @@ def ViewState(page):
 
 #requete POST de mainpage (pour planning)
 def POSTmain(viewS, cookies):
-    viewS = ViewState(GETmain(cookies,baseURL))
     conn = http.client.HTTPSConnection("aurion.junia.com")
     payload = ('''form=form&form%3AlargeurDivCenter=1219&form%3Asauvegarde=&form%3Aj_idt772_focus=&form%3Aj_idt772_input=44323&form%3Asidebar=form%3Asidebar&form%3Asidebar_menuid=0'''
                 + "&javax.faces.ViewState=" + viewS)
@@ -88,15 +87,14 @@ def GETplanning(cookies,baseURL):
         }
     tempURL = str(baseURL+"/faces/Planning.xhtml")
     response = requests.get(tempURL, headers=headers)
-    # print(response.text)
+    print(response.text)
     # print(response.status_code)
     return response.text
 
 
-def POSTplan(viewS, cookies):
-    
+def POSTplanA(viewS, cookies):
     viewS = ViewState(GETplanning(cookies,baseURL))
-
+    # print(viewS)
     #Nbr de la semaine actuelle
     d = date.today()
     # print(d)
@@ -150,8 +148,8 @@ def POSTplan(viewS, cookies):
                             + "&form%3Aj_idt" + formId
                             + "_view=agendaWeek&form%3AoffsetFuseauNavigateur=" + tz
                             + "&form%3Aonglets_activeIndex=0&form%3Aonglets_scrollState=0&form%3Aj_idt236_focus=&form%3Aj_idt236_input=44323"
-                            + "&javax.faces.ViewState="+ urllib.parse.quote(viewS))
-    print(payload)
+                            + "&javax.faces.ViewState=" + urllib.parse.quote(viewS))
+    # print(payload)
     lenP = str(len(payload)+1)
 
     conn = http.client.HTTPSConnection("aurion.junia.com")
@@ -168,7 +166,46 @@ def POSTplan(viewS, cookies):
                 'Cookie': cookies,
                 "Content-Length": lenP
         }
-    conn.request("POST", "/faces/Planning.xhtml", payload, headers)
+    conn.request("POST", "/faces/Planning.xhtml", payload)
+    res = conn.getresponse()
+    resS = res.status
+    resH = res.headers
+    resR = res.read()
+    print(resS)
+    # print(resH)
+    print(resR.decode('utf-8'))
+    pass
+
+def POSTplanB(viewS, cookies):    
+    viewS = ViewState(GETplanning(cookies,baseURL))
+    id = 1
+    id = str(id)
+    payload =("javax.faces.partial.ajax=true&javax.faces.source=form%3Aj_idt117&" +
+                "javax.faces.partial.execute=form%3Aj_idt117&javax.faces.partial.render=form%3AmodaleDetail+form%3AconfirmerSuppression&" +
+                "javax.faces.behavior.event=eventSelect&javax.faces.partial.event=eventSelect&" +
+                "form%3Aj_idt117_selectedEventId=" + id + "&" +
+                "form=form&form%3AlargeurDivCenter=1219&form%3Aj_idt117_view=agendaWeek&" +
+                "form%3AoffsetFuseauNavigateur=-7200000&form%3Aonglets_activeIndex=0&form%3Aonglets_scrollState=0&form%3Aj_idt236_focus=&" +
+                "form%3Aj_idt236_input=44323"
+                + "&javax.faces.ViewState=" + urllib.parse.quote(viewS))
+    # print(payload)
+    lenP = str(len(payload)+1)
+
+    conn = http.client.HTTPSConnection("aurion.junia.com")
+    headers = {"Accept": "application/xml, text/xml, */*; q=0.01",
+                "Accept-Language": "fr-FR",
+                "Accept-Encoding": "gzip, deflate, br",
+                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                "Faces-Request": "partial/ajax",
+                "X-Requested-With": "XMLHttpRequest",
+                "Connection": "keep-alive",
+                "Sec-Fetch-Dest": "empty",
+                "Sec-Fetch-Mode": "cors",
+                "Sec-Fetch-Site": "same-origin",
+                'Cookie': cookies,
+                "Content-Length": lenP
+        }
+    conn.request("POST", "/faces/Planning.xhtml", payload)
     res = conn.getresponse()
     resS = res.status
     resH = res.headers
@@ -181,10 +218,26 @@ def POSTplan(viewS, cookies):
 
 cookies = Cookies(POSTlogin(username,password))
 viewS = ViewState(GETmain(cookies,baseURL))
-
-GETmain(cookies,baseURL)
-POSTmain(viewS,cookies)
-GETplanning(cookies,baseURL)
-POSTplan(viewS,cookies)
-
 # print(cookies, viewS)
+
+timing=datetime.now()
+GETmain(cookies,baseURL)
+# print(datetime.now()-timing)
+
+timing=datetime.now()
+POSTmain(viewS,cookies)
+# print(datetime.now()-timing)
+
+timing=datetime.now()
+# GETplanning(cookies,baseURL)
+# print(datetime.now()-timing)
+
+timing=datetime.now()
+POSTplanA(viewS,cookies)
+# print(datetime.now()-timing)
+
+timing=datetime.now()
+POSTplanB(viewS,cookies)
+# print(datetime.now()-timing)
+
+

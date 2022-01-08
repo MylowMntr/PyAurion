@@ -60,7 +60,6 @@ def ViewState(page):
 
 #requete POST de mainpage (pour planning)
 def POSTmain(viewS, cookies):
-    viewS = ViewState(GETmain(cookies,baseURL))
     conn = http.client.HTTPSConnection("aurion.junia.com")
     payload = ('''form=form&form%3AlargeurDivCenter=1219&form%3Asauvegarde=&form%3Aj_idt772_focus=&form%3Aj_idt772_input=44323&form%3Asidebar=form%3Asidebar&form%3Asidebar_menuid=0'''
                 + "&javax.faces.ViewState=" + viewS)
@@ -90,13 +89,10 @@ def GETplanning(cookies,baseURL):
     response = requests.get(tempURL, headers=headers)
     # print(response.text)
     # print(response.status_code)
-    return response.text
+    pass
 
 
 def POSTplan(viewS, cookies):
-    
-    viewS = ViewState(GETplanning(cookies,baseURL))
-
     #Nbr de la semaine actuelle
     d = date.today()
     # print(d)
@@ -182,9 +178,20 @@ def POSTplan(viewS, cookies):
 cookies = Cookies(POSTlogin(username,password))
 viewS = ViewState(GETmain(cookies,baseURL))
 
+timing=datetime.now()
 GETmain(cookies,baseURL)
+print(datetime.now()-timing)
+
+timing=datetime.now()
 POSTmain(viewS,cookies)
+print(datetime.now()-timing)
+
+timing=datetime.now()
 GETplanning(cookies,baseURL)
+print(datetime.now()-timing)
+
+timing=datetime.now()
 POSTplan(viewS,cookies)
+print(datetime.now()-timing)
 
 # print(cookies, viewS)
