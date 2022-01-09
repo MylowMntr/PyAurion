@@ -7,6 +7,7 @@ Cette dernière est en Python / Flask pour être disponible sous Android / iOS.
 
 ## Merci
 Au projet [Scorpion](https://github.com/LiamAbyss/Scorpion) et leurs développeurs qui m'ont apporté leur précieuse aide !
+Au reposit pour [le](https://github.com/kkarimi/flask-fullcalendar) calendrier.
 
 ## Me contacter
 Si vous voulez participer au projet, rendez-vous sur mon [site](https://mylow.fr) où vous pouvez retrouver toutes les infos pour me contacter (privilégiez Discord : Mylow#9595)

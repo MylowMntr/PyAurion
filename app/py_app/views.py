@@ -4,6 +4,7 @@ locale.setlocale(locale.LC_ALL, 'fr_FR.utf8')
 from flask import Flask, render_template
 from . import app
 from .api import getnotes, getplanning
+import json
 
 @app.route("/")
 def home():
@@ -26,20 +27,18 @@ def hello_there(name = None):
 
 @app.route("/notes/")
 def notes():
-        return render_template(
+    return render_template(
         "notes.html",
         notes=getnotes.main(),
     )
-
+    
 @app.route("/plan/")
 def plan():
-        return render_template(
+    plan=getplanning.main(1)
+    return render_template(
         "plan.html",
-        plan=getplanning.main(),
-        datetime=datetime,
     )
-        
-        
-@app.route("/api/data")
-def get_data():
+
+@app.route('/data')
+def return_data():
     return app.send_static_file("data.json")

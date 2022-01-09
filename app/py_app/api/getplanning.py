@@ -93,7 +93,7 @@ def GETplan(cookies,baseURL):
     return response.text
 
 
-def POSTplan(viewS, cookies):
+def POSTplan(viewS, cookies, sem=0):
     
     viewS = ViewState(GETplan(cookies,baseURL))
 
@@ -112,7 +112,7 @@ def POSTplan(viewS, cookies):
 
     #date du lundi en Milliseconde
     Monday = Monday.strftime("%d.%m.%Y")+' 00:00:00,00'
-    Monday = int((datetime.strptime(Monday,'%d.%m.%Y %H:%M:%S,%f')).timestamp()* 1000)
+    Monday = int((datetime.strptime(Monday,'%d.%m.%Y %H:%M:%S,%f')).timestamp()* 1000 + (sem*604800000))
     # UNE SEMAINE = 604800000ms
 
     #calcul de l'offset 
@@ -178,21 +178,28 @@ def POSTplan(viewS, cookies):
     
     import json
     x = resR.decode("utf-8")
+    # print(x)
     x = x.split('''[CDATA[{"events" : ''')
     x = x[1].split("}]]")
     x = x[0]
     #le tableau :
     plan = json.loads(x, strict=False)
+    # print(plan)
+    # print(type(plan))
+    
+    with open('py_app/static/data.json', 'w') as f:
+        json.dump(plan, f)
     return(plan)
 
 
 cookies = Cookies(POSTlogin(username,password))
 viewS = ViewState(GETmain(cookies,baseURL))
 
-def main():
+def main(sem):
     GETmain(cookies,baseURL)
     POSTmain(viewS,cookies)
     GETplan(cookies,baseURL)
-    return POSTplan(viewS,cookies)
+    return POSTplan(viewS,cookies,sem)
 
+# main(1)
 # print(cookies, viewS)
