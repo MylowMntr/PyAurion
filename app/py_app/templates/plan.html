@@ -1,3 +1,8 @@
+{% extends "layout.html" %}
+{% block title %}
+Planning
+{% endblock %}
+{% block content %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,16 +13,18 @@
 <script src="{{ url_for('static', filename='lib/jquery.min.js') }}"></script>
 <script src="{{ url_for('static', filename='fullcalendar.min.js') }}"></script>
 <script>
-
+	var today = new Date();
+	var today = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 	$(document).ready(function() {
 
 		$('#calendar').fullCalendar({
+			
 			header: {
 				left: 'prev,next today',
 				center: 'title',
 				right: 'month,agendaWeek,agendaDay'
 			},
-			defaultDate: '2022-01-01',
+			defaultDate: today,
 			editable: false,
 			eventLimit: true, // allow "more" link when too many events
 			events: {
@@ -82,3 +89,4 @@
 
 </body>
 </html>
+{% endblock %}

@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css') }}" />
-        <title>Notes</title>
-    </head>
-    <body>
-        <table class="notes">
-            {{ notes | safe }}
-        </table>
-    </body>
-</html>
+{% extends "layout.html" %}
+{% block title %}
+Notes
+{% endblock %}
+{% block content %}
+    <table class="notes">
+        {{ notes | safe }}
+    </table>
+{% endblock %}

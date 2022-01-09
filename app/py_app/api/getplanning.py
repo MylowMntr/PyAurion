@@ -4,13 +4,8 @@ from bs4 import BeautifulSoup
 from datetime import datetime, date, timedelta
 import urllib
 import pytz
+import json
 
-#importation des IDs depuis le PATH (perso)
-import os
-username = str(os.environ.get("mailaurion"))
-password = str(os.environ.get("passaurion"))
-
-baseURL = 'https://aurion.junia.com'
 
 #Requete POST avec http.client (ne fonctionne pas avec requests)
 def POSTlogin(username,password):
@@ -59,7 +54,7 @@ def ViewState(page):
     return viewS
 
 #requete POST de mainpage (pour planning)
-def POSTmain(viewS, cookies):
+def POSTmain(viewS, cookies,baseURL):
     viewS = ViewState(GETmain(cookies,baseURL))
     conn = http.client.HTTPSConnection("aurion.junia.com")
     payload = ('''form=form&form%3AlargeurDivCenter=1219&form%3Asauvegarde=&form%3Aj_idt772_focus=&form%3Aj_idt772_input=44323&form%3Asidebar=form%3Asidebar&form%3Asidebar_menuid=0'''
@@ -93,7 +88,7 @@ def GETplan(cookies,baseURL):
     return response.text
 
 
-def POSTplan(viewS, cookies, sem=0):
+def POSTplan(viewS, cookies, baseURL, sem=0):
     
     viewS = ViewState(GETplan(cookies,baseURL))
 
@@ -124,7 +119,7 @@ def POSTplan(viewS, cookies, sem=0):
 
     #date en Milliseconde du lundi (start) et du samedi (end)
     start = Monday
-    end = Monday + (6*24*60*60*1000)
+    end = Monday + (6*24*60*60*1000)*4
     # print(start, end)
 
     #Mise en forme avant concatenation
@@ -192,14 +187,24 @@ def POSTplan(viewS, cookies, sem=0):
     return(plan)
 
 
-cookies = Cookies(POSTlogin(username,password))
-viewS = ViewState(GETmain(cookies,baseURL))
+
 
 def main(sem):
+    #importation des IDs depuis le user.json
+    with open('py_app/static/user.json', 'r') as f:
+        user = json.load(f)
+        username = user["email"]
+        password = user["password"]
+
+    baseURL = "https://aurion.junia.com"
+    
+    cookies = Cookies(POSTlogin(username,password))
+    viewS = ViewState(GETmain(cookies,baseURL))
+    
     GETmain(cookies,baseURL)
-    POSTmain(viewS,cookies)
+    POSTmain(viewS,cookies,baseURL)
     GETplan(cookies,baseURL)
-    return POSTplan(viewS,cookies,sem)
+    return POSTplan(viewS,cookies,baseURL,sem)
 
 # main(1)
 # print(cookies, viewS)

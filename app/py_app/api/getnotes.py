@@ -4,13 +4,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime, date, timedelta
 import urllib
 import pytz
-
-#importation des IDs depuis le PATH (perso)
-import os
-username = str(os.environ.get("mailaurion"))
-password = str(os.environ.get("passaurion"))
-
-baseURL = 'https://aurion.junia.com'
+import json
 
 #Requete POST avec http.client (ne fonctionne pas avec requests)
 def POSTlogin(username,password):
@@ -59,7 +53,7 @@ def ViewState(page):
     return viewS
 
 #requete POST de mainpage (pour planning)
-def POSTmain(viewS, cookies):
+def POSTmain(viewS, cookies,baseURL):
     viewS = ViewState(GETmain(cookies,baseURL))
     conn = http.client.HTTPSConnection("aurion.junia.com")
     payload = ("javax.faces.partial.ajax=true&javax.faces.source=form%3Aj_idt52&" +
@@ -83,7 +77,7 @@ def POSTmain(viewS, cookies):
     pass
 
 #requete POST de mainpage (pour planning)
-def POSTmainn(viewS, cookies):
+def POSTmainn(viewS, cookies,baseURL):
     viewS = ViewState(GETmain(cookies,baseURL))
     conn = http.client.HTTPSConnection("aurion.junia.com")
     menuid = "1_1"
@@ -119,7 +113,7 @@ def GETnote(cookies,baseURL):
     # print(response.status_code)
     return response.text
 
-def POSTnote(viewS, cookies):
+def POSTnote(viewS, cookies,baseURL):
     viewS = ViewState(GETnote(cookies,baseURL))
     start = str(0)
     rows = str(10000)
@@ -175,16 +169,28 @@ def POSTnote(viewS, cookies):
     return(x[0])
     
 
-cookies = Cookies(POSTlogin(username,password))
-viewS = ViewState(GETmain(cookies,baseURL))
+
 
 
 def main():
+    #importation des IDs depuis le user.json
+    with open('py_app/static/user.json', 'r') as f:
+        user = json.load(f)
+        username = user["email"]
+        password = user["password"]
+
+    # print(username,password)
+    baseURL = 'https://aurion.junia.com'
+    
+    cookies = Cookies(POSTlogin(username,password))
+    viewS = ViewState(GETmain(cookies,baseURL))
+    
     GETmain(cookies,baseURL)
-    POSTmain(viewS,cookies)
-    POSTmainn(viewS,cookies)
+    POSTmain(viewS,cookies,baseURL)
+    POSTmainn(viewS,cookies,baseURL)
     GETnote(cookies,baseURL)
     
-    return(POSTnote(viewS,cookies))
+    return(POSTnote(viewS,cookies,baseURL))
 
+# main()
 # print(cookies, viewS)
