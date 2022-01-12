@@ -248,7 +248,7 @@ android.arch = x86
 # p4a.bootstrap = sdl2
 
 # (int) port number to specify an explicit --port= p4a argument (eg for bootstrap flask)
-#p4a.port = 5555
+#p4a.port = 5000
 
 
 #
