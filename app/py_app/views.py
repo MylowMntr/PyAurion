@@ -33,7 +33,7 @@ def notes():
 def plan():
     my_file = Path("py_app/static/user.json")
     if my_file.is_file():
-        plan=getplanning.main(1)
+        plan=getplanning.main(0)
         return render_template(
             "plan.html",
         )

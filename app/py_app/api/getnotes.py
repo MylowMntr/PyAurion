@@ -6,6 +6,7 @@ import urllib
 import pytz
 import json
 
+
 #Requete POST avec http.client (ne fonctionne pas avec requests)
 def POSTlogin(username,password):
     conn = http.client.HTTPSConnection("aurion.junia.com")
