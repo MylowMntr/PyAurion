@@ -1,12 +1,7 @@
-from TableNotes import table 
+from . import TableNotes, getnotes
 import locale
 locale.setlocale(locale.LC_ALL, 'fr_FR')
-# from getnotes import main
-# result = main()
-# result = table(result)
 
-resultats = table()
-# print(resultats)
 
 def maths(result):
     maths,partiel = [],[]
@@ -123,7 +118,7 @@ def Moyenne(Notes, Coefs):
     moy = round(sum(Notes),2)
     return moy
 
-def MATHS():
+def MATHS(resultats):
     # print(matiere(maths(resultats)[0]))
     # print(matiere(maths(resultats)[1]))
     note = (Moyenne(matiere(maths(resultats)[0])[0],matiere(maths(resultats)[0])[1]))
@@ -134,7 +129,7 @@ def MATHS():
 # MATHS()
 
 
-def PROG():
+def PROG(resultats):
     # print(matiere(prog(resultats)[0]))
     # print(matiere(prog(resultats)[1]))
     # print(matiere(prog(resultats)[2]))
@@ -153,7 +148,7 @@ def PROG():
         note = (note*0.4) + (((noteds*0.33)+(notep*0.67))*0.6) 
     return (round(note,2))
 
-def WEB():
+def WEB(resultats):
     # print(matiere(web(resultats)[0]))
     # print(matiere(web(resultats)[1]))
     # print(matiere(web(resultats)[2]))
@@ -172,9 +167,9 @@ def WEB():
         note = (note*0.4) + (((noteds*0.33)+(notep*0.67))*0.6) 
     return(round(note,2))
 
-def INFO():
-    noteprog = PROG()
-    noteweb = WEB()
+def INFO(resultats):
+    noteprog = PROG(resultats)
+    noteweb = WEB(resultats)
     if (noteprog == 0): note = noteweb
     if (noteweb == 0): note = noteprog
     else:
@@ -185,7 +180,7 @@ def INFO():
 # INFO()    
 
 
-def PHYSIQUE():
+def PHYSIQUE(resultats):
     note = (Moyenne(matiere(optique(resultats)[0])[0],matiere(optique(resultats)[0])[1]))
     notep = (Moyenne(matiere(optique(resultats)[1])[0],matiere(optique(resultats)[1])[1]))
     noteopt = (note*0.4) + (notep*0.6)
@@ -203,7 +198,7 @@ def PHYSIQUE():
     return(round(note,2))
 # PHYSIQUE()
 
-def DEV():
+def DEV(resultats):
     noteang = (Moyenne(matiere(anglais(resultats))[0],matiere(anglais(resultats))[1]))
     notecomm = (Moyenne(matiere(comm(resultats))[0],matiere(comm(resultats))[1]))
     notespo = (Moyenne(matiere(sport(resultats))[0],matiere(sport(resultats))[1]))
@@ -212,3 +207,9 @@ def DEV():
     note = Moyenne(note, coef)
     return(round(note,2))
 # DEV()
+
+
+def main():
+    result = getnotes.main()
+    resultats = TableNotes.table(result)
+    return MATHS(resultats),PHYSIQUE(resultats),INFO(resultats),DEV(resultats)

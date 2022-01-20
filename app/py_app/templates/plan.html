@@ -24,11 +24,12 @@ Planning
 				center: 'title',
 				right: 'month,agendaWeek,agendaDay'
 			},
-			
-			editable: false,
+			eventDurationEditable: false,
 			eventStartEditable: false,
 			eventLimit: true, // allow "more" link when too many events
 			defaultDate: today,
+			defaultView: 'agendaWeek',
+			timeFormat: 'H:mm',
 			events: {
 				url: '/data',
 				error: function() {

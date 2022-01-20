@@ -3,7 +3,7 @@ import locale
 locale.setlocale(locale.LC_ALL, 'fr_FR.utf8')
 from flask import Flask, render_template, request
 from . import app
-from .api import getnotes, getplanning
+from .api import getnotes, getplanning, CalcMoyenne
 import json
 from pathlib import Path
 
@@ -28,7 +28,20 @@ def notes():
         return render_template(
         "login.html",
     )
-    
+        
+@app.route("/moyennes/")
+def moyennes():
+    my_file = Path("py_app/static/user.json")
+    if my_file.is_file():
+        return render_template(
+            "moyennes.html",
+            moyennes = CalcMoyenne.main()
+        )
+    else:
+        return render_template(
+        "login.html",
+    )
+        
 @app.route("/plan/")
 def plan():
     my_file = Path("py_app/static/user.json")
