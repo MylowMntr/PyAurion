@@ -41,3 +41,7 @@ table, td, tr{
     table-layout: fixed;
     width: 100%;
 }
+
+input{
+    width: 30%;
+}

@@ -4,7 +4,7 @@ locale.setlocale(locale.LC_ALL, 'fr_FR')
 
 
 def maths(result):
-    maths,partiel = [],[]
+    maths,partiel,coef = [],[],3
     for i in range(len(result)):
         if (("MATH1" in result[i][1]) or ("MATH2" in result[i][1]) or ("MATH3" in result[i][1]) or ("MATH4" in result[i][1])): 
             if (("P1" not in result[i][1]) and ("P2" not in result[i][1])):
@@ -13,10 +13,10 @@ def maths(result):
             else:
                 if (result[i][1] != result[i-1][1]):
                     partiel.append(result[i])
-    return maths, partiel
+    return maths, partiel, coef
 
 def prog(result):
-    prog,partiel,ds = [],[],[]
+    prog,partiel,ds,tp,coef = [],[],[],[],3
     for i in range(len(result)):
         if (("PROG1" in result[i][1]) or ("PROG2" in result[i][1])):
             if (("P1" not in result[i][1]) and ("P2" not in result[i][1]) and ("DS" not in result[i][1])):
@@ -25,13 +25,16 @@ def prog(result):
             if (("P1" in result[i][1]) or ("P2" in result[i][1])):
                 if (result[i][1] != result[i-1][1]):
                     partiel.append(result[i])
+            if (("TP1" in result[i][1]) or ("TP2" in result[i][1]) or ("TP3" in result[i][1]) or ("TP4" in result[i][1]) or ("TP5" in result[i][1]) or ("TP6" in result[i][1]) or ("TP7" in result[i][1]) or ("TP8" in result[i][1]) or ("TP9" in result[i][1])):
+                if (result[i][1] != result[i-1][1]):
+                    tp.append(result[i])
             if ("DS" in result[i][1]):
                 if (result[i][1] != result[i-1][1]):
                     ds.append(result[i])
-    return prog, partiel, ds
+    return prog, partiel, ds, coef
 
 def web(result):
-    web,partiel,ds = [],[],[]
+    web,partiel,ds,tp,coef = [],[],[],[],2
     for i in range(len(result)):
         if ("WEB" in result[i][1]):
             if (("P1" not in result[i][1]) and ("P2" not in result[i][1]) and ("DS" not in result[i][1])):
@@ -40,13 +43,16 @@ def web(result):
             if (("P1" in result[i][1]) or ("P2" in result[i][1])):
                 if (result[i][1] != result[i-1][1]):
                     partiel.append(result[i])
+            if (("TP1" in result[i][1]) or ("TP2" in result[i][1]) or ("TP3" in result[i][1]) or ("TP4" in result[i][1]) or ("TP5" in result[i][1]) or ("TP6" in result[i][1]) or ("TP7" in result[i][1]) or ("TP8" in result[i][1]) or ("TP9" in result[i][1])):
+                if (result[i][1] != result[i-1][1]):
+                    tp.append(result[i])
             if ("DS" in result[i][1]):
                 if (result[i][1] != result[i-1][1]):
                     ds.append(result[i])
-    return web, partiel, ds
+    return web, partiel, ds, coef
 
 def optique(result):
-    opt,partiel = [],[]
+    opt,partiel,coef = [],[],2
     for i in range(len(result)):
         if ("OPTIQUE" in result[i][1]) : 
             if (("P1" not in result[i][1]) and ("P2" not in result[i][1])):
@@ -55,9 +61,9 @@ def optique(result):
             else:
                 if (result[i][1] != result[i-1][1]):
                     partiel.append(result[i])
-    return opt, partiel
+    return opt, partiel, coef
 def electronique(result):
-    elec,partiel,tp = [],[],[]
+    elec,partiel,tp,coef = [],[],[],3
     for i in range(len(result)):
         if ("ELEC" in result[i][1]) : 
             if (("P1" not in result[i][1]) and ("P2" not in result[i][1])):
@@ -69,9 +75,9 @@ def electronique(result):
             else:
                 if (result[i][1] != result[i-1][1]):
                     partiel.append(result[i])
-    return elec, partiel
+    return elec, partiel, coef
 def mecanique(result):
-    meca,partiel = [],[]
+    meca,partiel,coef = [],[],3
     for i in range(len(result)):
         if ("MECANIQUE" in result[i][1]) : 
             if (("P1" not in result[i][1]) and ("P2" not in result[i][1])):
@@ -80,26 +86,29 @@ def mecanique(result):
             else:
                 if (result[i][1] != result[i-1][1]):
                     partiel.append(result[i])
-    return meca, partiel
+    return meca, partiel, coef
 
 def anglais(result):
-    ang = []
+    ang,coef = [],2
     for i in range(len(result)):
         if ("ANGLAIS" in result[i][1]): 
             ang.append(result[i])
-    return ang
+    return ang,coef
 def comm(result):
-    com = []
+    com,coef = [],2
     for i in range(len(result)):
         if ("COMM" in result[i][1]): 
             com.append(result[i])
-    return com
+    return com,coef
 def sport(result):
-    spo = []
+    spo, coef = [],2
     for i in range(len(result)):
         if ("SPORT" in result[i][1]): 
             spo.append(result[i])
-    return spo
+    return spo,coef
+
+
+
 # Calcul par rapport au coef des notes de result
 def matiere(result):
     Notes = []
@@ -113,10 +122,7 @@ def matiere(result):
     
 # moyenne a partir d'une liste de note du module
 def Moyenne(Notes, Coefs):
-    for g in range(len(Notes)):
-        Notes[g] = Notes[g] * Coefs[g] / sum(Coefs)
-    moy = round(sum(Notes),2)
-    return moy
+    return sum(Notes)/len(Notes)
 
 def MATHS(resultats):
     # print(matiere(maths(resultats)[0]))
@@ -199,9 +205,9 @@ def PHYSIQUE(resultats):
 # PHYSIQUE()
 
 def DEV(resultats):
-    noteang = (Moyenne(matiere(anglais(resultats))[0],matiere(anglais(resultats))[1]))
-    notecomm = (Moyenne(matiere(comm(resultats))[0],matiere(comm(resultats))[1]))
-    notespo = (Moyenne(matiere(sport(resultats))[0],matiere(sport(resultats))[1]))
+    noteang = (Moyenne(matiere(anglais(resultats)[0])[0],matiere(anglais(resultats)[0])[1]))
+    notecomm = (Moyenne(matiere(comm(resultats)[0])[0],matiere(comm(resultats)[0])[1]))
+    notespo = (Moyenne(matiere(sport(resultats)[0])[0],matiere(sport(resultats)[0])[1]))
     note = [noteang, notecomm, notespo]
     coef = [2,2,2]
     note = Moyenne(note, coef)

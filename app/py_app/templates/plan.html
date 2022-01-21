@@ -22,14 +22,16 @@ Planning
 			header: {
 				left: 'prev,next today',
 				center: 'title',
-				right: 'month,agendaWeek,agendaDay'
+				right: 'agendaDay,agendaWeek,month'
 			},
+			locale: "fr",
 			eventDurationEditable: false,
 			eventStartEditable: false,
 			eventLimit: true, // allow "more" link when too many events
 			defaultDate: today,
 			defaultView: 'agendaWeek',
 			timeFormat: 'H:mm',
+			hiddenDays: [0],
 			events: {
 				url: '/data',
 				error: function() {
