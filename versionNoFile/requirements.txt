@@ -1,0 +1,8 @@
+http.client
+requests
+bs4
+datetime
+pytz
+pathlib
+flask
+flaskwebgui

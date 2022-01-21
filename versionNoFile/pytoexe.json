@@ -1,0 +1,101 @@
+{
+ "version": "auto-py-to-exe-configuration_v1",
+ "pyinstallerOptions": [
+  {
+   "optionDest": "noconfirm",
+   "value": true
+  },
+  {
+   "optionDest": "filenames",
+   "value": "C:/Users/migat/OneDrive - JUNIA Grande \u00e9cole d'ing\u00e9nieurs/PyAurion/versionNoFile/gui.py"
+  },
+  {
+   "optionDest": "onefile",
+   "value": false
+  },
+  {
+   "optionDest": "console",
+   "value": false
+  },
+  {
+   "optionDest": "name",
+   "value": "PyAurion"
+  },
+  {
+   "optionDest": "ascii",
+   "value": false
+  },
+  {
+   "optionDest": "clean_build",
+   "value": false
+  },
+  {
+   "optionDest": "strip",
+   "value": false
+  },
+  {
+   "optionDest": "noupx",
+   "value": false
+  },
+  {
+   "optionDest": "uac_admin",
+   "value": false
+  },
+  {
+   "optionDest": "uac_uiaccess",
+   "value": false
+  },
+  {
+   "optionDest": "win_private_assemblies",
+   "value": false
+  },
+  {
+   "optionDest": "win_no_prefer_redirects",
+   "value": false
+  },
+  {
+   "optionDest": "bootloader_ignore_signals",
+   "value": false
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/migat/OneDrive - JUNIA Grande \u00e9cole d'ing\u00e9nieurs/PyAurion/versionNoFile/py_app;py_app/"
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/migat/OneDrive - JUNIA Grande \u00e9cole d'ing\u00e9nieurs/PyAurion/versionNoFile/main.py;."
+  },
+  {
+   "optionDest": "hiddenimports",
+   "value": "http.client"
+  },
+  {
+   "optionDest": "hiddenimports",
+   "value": "requests"
+  },
+  {
+   "optionDest": "hiddenimports",
+   "value": "bs4"
+  },
+  {
+   "optionDest": "hiddenimports",
+   "value": "datetime"
+  },
+  {
+   "optionDest": "hiddenimports",
+   "value": "pytz"
+  },
+  {
+   "optionDest": "hiddenimports",
+   "value": "pathlib"
+  },
+  {
+   "optionDest": "hiddenimports",
+   "value": "flask"
+  }
+ ],
+ "nonPyinstallerOptions": {
+  "increaseRecursionLimit": true,
+  "manualArguments": ""
+ }
+}
