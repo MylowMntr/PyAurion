@@ -15,11 +15,7 @@
   },
   {
    "optionDest": "console",
-   "value": false
-  },
-  {
-   "optionDest": "name",
-   "value": "PyAurion"
+   "value": true
   },
   {
    "optionDest": "ascii",
@@ -28,6 +24,10 @@
   {
    "optionDest": "clean_build",
    "value": false
+  },
+  {
+   "optionDest": "debug",
+   "value": "all"
   },
   {
    "optionDest": "strip",
@@ -59,11 +59,51 @@
   },
   {
    "optionDest": "datas",
+   "value": "C:/Users/migat/OneDrive - JUNIA Grande \u00e9cole d'ing\u00e9nieurs/PyAurion/versionNoFile/py_app/api;api/"
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/migat/OneDrive - JUNIA Grande \u00e9cole d'ing\u00e9nieurs/PyAurion/versionNoFile/py_app/static;static/"
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/migat/OneDrive - JUNIA Grande \u00e9cole d'ing\u00e9nieurs/PyAurion/versionNoFile/py_app/templates;templates/"
+  },
+  {
+   "optionDest": "datas",
    "value": "C:/Users/migat/OneDrive - JUNIA Grande \u00e9cole d'ing\u00e9nieurs/PyAurion/versionNoFile/py_app;py_app/"
   },
   {
    "optionDest": "datas",
-   "value": "C:/Users/migat/OneDrive - JUNIA Grande \u00e9cole d'ing\u00e9nieurs/PyAurion/versionNoFile/main.py;."
+   "value": "C:/Users/migat/OneDrive - JUNIA Grande \u00e9cole d'ing\u00e9nieurs/PyAurion/versionNoFile/app.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/migat/OneDrive - JUNIA Grande \u00e9cole d'ing\u00e9nieurs/PyAurion/versionNoFile/py_app/__init__.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/migat/OneDrive - JUNIA Grande \u00e9cole d'ing\u00e9nieurs/PyAurion/versionNoFile/py_app/views.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/migat/OneDrive - JUNIA Grande \u00e9cole d'ing\u00e9nieurs/PyAurion/versionNoFile/py_app/webapp.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/migat/OneDrive - JUNIA Grande \u00e9cole d'ing\u00e9nieurs/PyAurion/versionNoFile/py_app/api/CalcMoyenne.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/migat/OneDrive - JUNIA Grande \u00e9cole d'ing\u00e9nieurs/PyAurion/versionNoFile/py_app/api/getnotes.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/migat/OneDrive - JUNIA Grande \u00e9cole d'ing\u00e9nieurs/PyAurion/versionNoFile/py_app/api/getplanning.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/migat/OneDrive - JUNIA Grande \u00e9cole d'ing\u00e9nieurs/PyAurion/versionNoFile/py_app/api/TableNotes.py;."
   },
   {
    "optionDest": "hiddenimports",
@@ -92,6 +132,10 @@
   {
    "optionDest": "hiddenimports",
    "value": "flask"
+  },
+  {
+   "optionDest": "hiddenimports",
+   "value": "flaskwebgui"
   }
  ],
  "nonPyinstallerOptions": {
