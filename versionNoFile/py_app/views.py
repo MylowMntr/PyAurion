@@ -6,6 +6,7 @@ from . import app
 from .api import getnotes, getplanning, CalcMoyenne
 import json
 from pathlib import Path
+import urllib.parse
 
 @app.route("/")
 def home():
@@ -57,11 +58,14 @@ def return_data():
 
 
 @app.route('/login', methods=['GET', 'POST'])
-def form_example():
+def login():
     # handle the POST request
     if request.method == 'POST':
         session["email"] = request.form.get('email')
+        session["email"] = urllib.parse.quote(session["email"])
+        
         session["password"] = request.form.get('password')
+        session["password"] = urllib.parse.quote(session["password"])
         return render_template(
             "home.html"
         )

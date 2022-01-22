@@ -1,0 +1,8 @@
+https://reqbin.com/curl
+
+Cookie to html Planning(work) :
+curl --cookie "JSESSIONID=cookie" https://aurion.junia.com/faces/Planning.xhtml
+
+Cookie to xml Planning (work) :
+curl "https://aurion.junia.com/faces/Planning.xhtml" -X POST -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0" -H "Accept: application/xml, text/xml, */*; q=0.01" -H "Accept-Language: fr-FR" --compressed -H "Content-Type: application/x-www-form-urlencoded; charset=UTF-8" -H "Faces-Request: partial/ajax" -H "X-Requested-With: XMLHttpRequest" -H "Origin: https://aurion.junia.com" -H "Connection: keep-alive" -H "Referer: https://aurion.junia.com/faces/Planning.xhtml" -H "Cookie:JSESSIONID=8F43A13551639C64E7DC6E8430608B2D" -H "Sec-Fetch-Dest: empty" -H "Sec-Fetch-Mode: cors" -H "Sec-Fetch-Site: same-origin" -H "Cache-Control: max-age=0" --data-raw "javax.faces.partial.ajax=true&javax.faces.source=form"%"3Aj_idt117&javax.faces.partial.execute=form"%"3Aj_idt117&javax.faces.partial.render=form"%"3Aj_idt117&form"%"3Aj_idt117=form"%"3Aj_idt117&form"%"3Aj_idt117_start=1633298400000&form"%"3Aj_idt117_end=1633816800000&form=form&form"%"3AlargeurDivCenter=1219&form"%"3Adate_input=04"%"2F10"%"2F2021&form"%"3Aweek=40-2021&form"%"3Aj_idt117_view=agendaWeek&form"%"3AoffsetFuseauNavigateur=-7200000&form"%"3Aonglets_activeIndex=0&form"%"3Aonglets_scrollState=0&form"%"3Aj_idt236_focus=&form"%"3Aj_idt236_input=44323&javax.faces.ViewState=-8677916307983691826"%"3A-6332955211556887046"
+
