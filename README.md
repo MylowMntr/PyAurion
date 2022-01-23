@@ -1,6 +1,10 @@
 # Projet PyAurion
 Projet personnel de connexion à Aurion en Python !
 
+### Actuellement
+https://af41-185-181-4-43.ngrok.io/login
+En "versionNoFile"  (aucun enregitrement de donnée)
+
 ## Description
 Aurion n'ayant pas d'API, il est difficile de s'y connecter. Je crée donc une WebApp pour permettre la visualisation des emplois du temps ainsi que des notes (ainsi que les moyennes).
 Cette dernière est en Python / Flask pour être disponible sous Android / iOS.
