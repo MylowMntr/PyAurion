@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block title %}
+Notes
+{% endblock %}
+{% block content %}
+    <table class="notes">
+        {{ notes | safe }}
+    </table>
+{% endblock %}
