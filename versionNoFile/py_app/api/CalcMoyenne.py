@@ -124,6 +124,10 @@ def matiere(result):
 def Moyenne(Notes, Coefs):
     return sum(Notes)/len(Notes)
 
+def MoyenneC(Notes, Coefs):
+    return sum(Notes[g] * Coefs[g] / sum(Coefs) for g in range(len(Notes)))
+
+
 def MATHS(resultats):
     # print(matiere(maths(resultats)[0]))
     # print(matiere(maths(resultats)[1]))
@@ -181,7 +185,7 @@ def INFO(resultats):
     else:
         note = [noteprog, noteweb]
         coef = [3,2]
-        note = Moyenne(note, coef)
+        note = MoyenneC(note, coef)
     return(round(note,2))
 # INFO()    
 
@@ -200,7 +204,7 @@ def PHYSIQUE(resultats):
     else:
         note = [noteopt, noteelec]
         coef = [2,3]
-        note = Moyenne(note, coef)
+        note = MoyenneC(note, coef)
     return(round(note,2))
 # PHYSIQUE()
 
@@ -210,7 +214,7 @@ def DEV(resultats):
     notespo = (Moyenne(matiere(sport(resultats)[0])[0],matiere(sport(resultats)[0])[1]))
     note = [noteang, notecomm, notespo]
     coef = [2,2,2]
-    note = Moyenne(note, coef)
+    note = MoyenneC(note, coef)
     return(round(note,2))
 # DEV()
 
