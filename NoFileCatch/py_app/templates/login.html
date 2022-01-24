@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block title %}
+Connexion
+{% endblock %}
+{% block content %}
+    <div class="column is-4 is-offset-4">
+        <h3 class="title">Connexion</h3>
+        <div class="box">
+            <form method="POST" action="/login">
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="email" name="email" placeholder="Mail Junia" autofocus="">
+                    </div>
+                </div>
+    
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="password" name="password" placeholder="Mot de passe">
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <input type="checkbox" name="note" value="1">J'accepte que mes notes soient enregistrées à des fins de statistiques.
+                </div>
+                <br>
+
+                <button class="button is-block is-info is-large is-fullwidth">Connexion</button>
+            </form>
+        </div>
+        <p><strong>EN CLIQUANT SUR CONNEXION, VOUS ACCEPTEZ QUE VOS DONNEES (illisibles) SOIENT TRANSMISES A MILO MONTUORI (milo.montuori@student.junia.com)</strong></p>
+        <p>Aucune donnée n'est enregistrée nulle part (sauf si vous avez acceptez de "partagés" vos notes), je dis ca au cas où j'aurai des problèmes mdr</p>
+    </div>
+{% endblock %}

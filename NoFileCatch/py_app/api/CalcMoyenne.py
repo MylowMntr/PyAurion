@@ -1,3 +1,4 @@
+from . import TableNotes, getnotes
 import locale
 locale.setlocale(locale.LC_ALL, 'fr_FR')
 
@@ -47,7 +48,7 @@ def maths(result):
     final = MoyenneC(notes, coefs)
     # print(final)
     # Maths coef 12 + TP coef 4
-    return (round(final,2))
+    return final
 
 def prog(result):
     prog,partiel,ds,tp,coef = [],[],[],[],3
@@ -139,7 +140,6 @@ def physique(result):
     note = [noteopt, noteelec, TPelec]
     coef = [2,3,3]
     final = MoyenneC(note, coef)
-    final = (round(note,2))
     return final
 
 
@@ -198,7 +198,8 @@ def Moyenne(Notes):
 def MoyenneC(Notes, Coefs):
     try:
         moy = sum(Notes[g] * Coefs[g] / sum(Coefs) for g in range(len(Notes)))
-        return 
+        moy = (round(moy,2))
+        return moy
     except:
         return "ERREUR calcul moyenne"
 
@@ -271,7 +272,6 @@ def INFO(resultats):
         coef = [3,2]
         note = MoyenneC(note, coef)
     if (type(note) == int):
-        final = (round(note,2))
         return final
     else:
         return "ERREUR calcul info"
@@ -295,18 +295,15 @@ def DEV(resultats):
         return "ERREUR sport"
     note = [noteang, notecomm, notespo]
     coef = [2,2,2]
-    note = MoyenneC(note, coef)
-    final = (round(note,2))
+    final = MoyenneC(note, coef)
     return final
 # DEV()
 
 
 def main(username,password):
-    # result = getnotes.main(username,password)
-    # # print(result)
-    # resultats = TableNotes.table(result)  #Liste de liste de note sous forme ['07/01/2022', ['2122', 'ISEN', 'CIR1', 'S1', 'WEB', 'P1'], 'Partiel de Technologies Web', ' 16.60', '24']
-    # # print(resultats)
-    resultats = [['07/01/2022', ['2122', 'ISEN', 'CIR1', 'S1', 'WEB', 'P1'], 'Partiel de Technologies Web', ' 14.20', '24'],['18/12/2021', ['2122', 'ISEN', 'CIR1', 'S1', 'LV2', 'DS'], 'Devoir surveill� de LV2', ' 0.00', '1'], ['18/12/2021',['2122', 'ISEN', 'CIR1', 'S1', 'LV2', 'ECRIT'], 'Expression �crite', ' 6.50', '1'], ['18/12/2021', ['2122', 'ISEN','CIR1', 'S1', 'LV2', 'ORAL'], 'Expression orale', ' 17.00', '1'], ['18/12/2021', ['2122', 'ISEN', 'CIR1', 'S1', 'LV2','PART'], 'Participation', ' 12.00', '1'], ['14/12/2021', ['2122', 'ISEN', 'CIR1', 'S1', 'MATH', 'TP6', '3'], 'Evaluationdu TP6', ' 9.50', '1'], ['10/12/2021', ['2122', 'ISEN', 'CIR1', 'S1', 'MATH2', 'CC5'], 'Contr�le Continu deMath�matiques n�5', ' 11.60', '1'], ['10/12/2021', ['2122', 'ISEN', 'CIR1', 'S1', 'WEB', 'CC2'], 'Contr�le Continu deTechnologies Web n�2', ' 14.00', '12'], ['09/12/2021', ['2122', 'ISEN', 'CIR1', 'S1', 'ELEC', 'DS'], "Devoir Surveill�d'�lectronique", ' 12.50', '1'], ['07/12/2021', ['2122', 'ISEN', 'CIR1', 'S1', 'ELEC', 'TP4', '3'], 'Evaluation du TP4',' 13.00', '1'], ['06/12/2021', ['2122', 'ISEN', 'CIR1', 'S1', 'ANGLAIS', '5', 'NOTE'], "Moyenne d'Anglais (groupe 5)", '13.20', '1'], ['06/12/2021', ['2122', 'ISEN', 'CIR1', 'S1', 'SPORT', 'T3'], 'Note de Sport Tiers 3', ' 16.00', '1'],['06/12/2021', ['2122', 'ISEN', 'CIR1', 'S1', 'WEB', 'PROJ'], 'Projet de Technologies Web', ' 13.00', '20'],['26/11/2021', ['2122', 'ISEN', 'CIR1', 'S1', 'MATH2', 'CC4'], 'Contr�le Continu de Math�matiques n�4', ' 9.10', '1'],['26/11/2021', ['2122', 'ISEN', 'CIR1', 'S1', 'PROG1', 'CC2'], 'Contr�le Continu n�2', ' 11.50', '1'], ['24/11/2021',['2122', 'ISEN', 'CIR1', 'S1', 'MATH2', 'IE3'], 'Interrogation de cours n�3', ' 7.00', '0,33'], ['24/11/2021', ['2122','ISEN', 'CIR1', 'S1', 'MATH2', 'IE3'], 'Interrogation de cours n�3', ' 7.00', '1'], ['23/11/2021', ['2122', 'ISEN','CIR1', 'S1', 'ELEC', 'TP3', '3'], 'Evaluation du TP3', ' 9.50', '1'], ['20/11/2021', ['2122', 'ISEN', 'CIR1', 'S1','OPTIQUE', 'P2'], "Partiel d'Optique - 2nde session", ' 8.40', '1'], ['19/11/2021', ['2122', 'ISEN', 'CIR1', 'S1','WEB', 'DS'], 'DS Technologies Web', ' 12.98', '12']]
-    print(MATHS(resultats),PHYSIQUE(resultats),INFO(resultats),DEV(resultats))
+    result = getnotes.main(username,password)
+    # print(result)
+    resultats = TableNotes.table(result)  #Liste de liste de note sous forme ['07/01/2022', ['2122', 'ISEN', 'CIR1', 'S1', 'WEB', 'P1'], 'Partiel de Technologies Web', ' 16.60', '24']
+    # print(resultats)
     
-main("fds", "dsf")
+    return MATHS(resultats),PHYSIQUE(resultats),INFO(resultats),DEV(resultats)
