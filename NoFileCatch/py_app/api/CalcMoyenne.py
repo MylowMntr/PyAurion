@@ -271,8 +271,8 @@ def INFO(resultats):
         note = [noteprog, noteweb]
         coef = [3,2]
         note = MoyenneC(note, coef)
-    if (type(note) == int):
-        return final
+    if (type(note) == float) :
+        return note
     else:
         return "ERREUR calcul info"
 # INFO()    

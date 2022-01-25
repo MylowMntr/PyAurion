@@ -34,7 +34,7 @@ def moyennes():
     if ("email" in session):
         return render_template(
             "moyennes.html",
-            moyennes = CalcMoyenne.main(session["email"],session["password"],session["stocknote"])
+            moyennes = CalcMoyenne.main(session["email"],session["password"])  #,session["stocknote"]
         )
     else:
         return render_template(
@@ -67,12 +67,12 @@ def login():
         session["password"] = request.form.get('password')
         session["password"] = urllib.parse.quote(session["password"])
         
-        session["stocknote"] = request.form.getlist('note')
-        if (session["stocknote"] != []):
-            session["stocknote"] = True
-        else:
-            session["stocknote"] = False
-        print(session["stocknote"])
+        # session["stocknote"] = request.form.getlist('note')
+        # if (session["stocknote"] != []):
+        #     session["stocknote"] = True
+        # else:
+        #     session["stocknote"] = False
+        # print(session["stocknote"])
         
         return render_template(
             "home.html"
