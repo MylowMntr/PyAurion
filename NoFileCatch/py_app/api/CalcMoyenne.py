@@ -293,6 +293,7 @@ def DEV(resultats):
     notespo = (Moyenne(matiere(sport(resultats)[0])[0]))
     if (notespo == 21):
         return "ERREUR sport"
+        
     note = [noteang, notecomm, notespo]
     coef = [2,2,2]
     final = MoyenneC(note, coef)
