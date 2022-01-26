@@ -3,7 +3,7 @@ import locale
 locale.setlocale(locale.LC_ALL, 'fr_FR.utf8')
 from flask import Flask, render_template, request, session
 from . import app
-from .api import getnotes, getplanning, CalcMoyenne
+from .api import getnotes, getplanning, CalcMoyenne, validelogs
 import json
 from pathlib import Path
 import urllib.parse
@@ -73,6 +73,11 @@ def login():
         # else:
         #     session["stocknote"] = False
         # print(session["stocknote"])
+        if (validelogs.main(0, session["email"], session["password"]) != True):
+            error = "Identifiants invalides ! Réessaye"
+            return render_template(
+                "login.html",error=error
+            )
         
         return render_template(
             "home.html"
