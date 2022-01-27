@@ -24,8 +24,11 @@ def table(data):
         if "CPG1" in d[i][1]:
             d[i][1].remove("CPG1")
     
-    # for i in range(len(d)):
-    #     d[i][2] = str(d[i][2]).split()
+    final = []
+    for i in range(len(d)):
+        # print(d[i][1][0])
+        if (d[i][1][0] == '2122'):
+            final.append(d[i])
         
-    # print(d)
-    return d
+    # print(final)
+    return final
