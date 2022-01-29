@@ -68,6 +68,15 @@ def prog(result):
                     ds.append(result[i])
     return prog, partiel, ds, coef
 
+def info(result):
+    tp,coef = [],3
+    for i in range(len(result)):
+        if ("INFO" in result[i][1]):
+            if ("TP" in result[i][1]):
+                if (result[i][1] != result[i-1][1]):
+                    tp.append(result[i])
+    return tp,coef
+
 def web(result):
     web,partiel,ds,tp,coef = [],[],[],[],2
     for i in range(len(result)):
@@ -265,11 +274,12 @@ def WEB(resultats):
 def INFO(resultats):
     noteprog = PROG(resultats)
     noteweb = WEB(resultats)
+    notetp = (Moyenne(matiere(info(resultats)[0])[0]))
     if (noteprog == 0): note = noteweb
     if (noteweb == 0): note = noteprog
     else:
-        note = [noteprog, noteweb]
-        coef = [3,2]
+        note = [noteprog, noteweb, notetp]
+        coef = [3,2,3]
         note = MoyenneC(note, coef)
     if (type(note) == float) :
         return note
