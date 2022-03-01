@@ -146,23 +146,32 @@ def physique(result):
     noteopt = (note*0.4) + (notep*0.6)
     # print(noteopt)
 
-    note = [noteopt, noteelec, TPelec]
-    coef = [2,3,3]
-    final = MoyenneC(note, coef)
-    return final
-
-
-def mecanique(result):
-    meca,partiel,coef = [],[],3
+    meca,partiel = [],[]
     for i in range(len(result)):
-        if ("MECANIQUE" in result[i][1]) : 
+        if ("MECA" in result[i][1]) : 
+            # print(result[i])
             if (("P1" not in result[i][1]) and ("P2" not in result[i][1])):
                 if (result[i][1] != result[i-1][1]):
                     meca.append(result[i])
-            else:
-                if (result[i][1] != result[i-1][1]):
-                    partiel.append(result[i])
-    return meca, partiel, coef
+            # else:
+            #     if (result[i][1] != result[i-1][1]):
+            #         partiel.append(result[i])
+    # print(meca)
+    note = Moyenne(matiere(meca)[0])
+    # print(note)
+    if (note == 21):
+        return "ERREUR meca CC"
+    # notep = Moyenne(matiere(partiel)[0])
+    # if (notep == 21):
+    #     return "ERREUR meca Partiel"
+    notemeca = note
+    
+    
+    note = [noteopt, noteelec, TPelec, notemeca]
+    print(note)
+    coef = [2,3,3,3]
+    final = MoyenneC(note, coef)
+    return final
 
 def anglais(result):
     ang,coef = [],2
