@@ -34,5 +34,3 @@ def main(sem,username,password):
     else: 
         return False
     
-    
-# print(main(0,"milo.montuori%40student.junia.com","5%3F8xWrAg"))
