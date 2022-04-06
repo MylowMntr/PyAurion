@@ -4,7 +4,7 @@ locale.setlocale(locale.LC_ALL, 'fr_FR')
 
 
 def maths(result):
-    maths,partiel,coef,TP,IE,sumIE = [],[],3,[],[],0
+    maths,partiel,coef,TP1,TP2,IE,sumIE = [],[],3,[],[],[],0
     # print(result)
     for i in range(len(result)):
         if (("MATH" in result[i][1][4])):
@@ -13,8 +13,12 @@ def maths(result):
                 if (result[i][1] != result[i-1][1]):
                     partiel.append(result[i])
             elif (("TP" in result[i][1][5])):
-                if (result[i][1] != result[i-1][1]):
-                    TP.append(result[i])
+                if (("S1" in result[i][1][3])):
+                    if (result[i][1] != result[i-1][1]):
+                        TP1.append(result[i])
+                if (("S2" in result[i][1][3])):
+                    if (result[i][1] != result[i-1][1]):
+                        TP2.append(result[i])
             elif (("IE" in result[i][1][5])):
                 if (result[i][1] != result[i-1][1]):
                     IE.append(result[i])
@@ -36,15 +40,19 @@ def maths(result):
         return "ERREUR maths Partiel"
     # print(notep)
 
-    notetp = Moyenne(matiere(TP)[0])
+    notetp1 = Moyenne(matiere(TP1)[0])
     # print(notetp)
-    if (notetp == 21):
-        return "ERREUR maths TP"
+    if (notetp1 == 21):
+        return "ERREUR maths TPs1"
+    notetp2 = Moyenne(matiere(TP2)[0])
+    # print(notetp)
+    if (notetp2 == 21):
+        return "ERREUR maths TPs2"
 
     note = (note*0.4) + (notep*0.6)
     # print(note)
-    notes = [note,notetp]
-    coefs = [12,4]
+    notes = [note,notetp1,notetp2]
+    coefs = [12,2,2]
     final = MoyenneC(notes, coefs)
     # print(final)
     # Maths coef 12 + TP coef 4
@@ -54,19 +62,33 @@ def prog(result):
     prog,partiel,ds,tp,coef = [],[],[],[],3
     for i in range(len(result)):
         if (("PROG1" in result[i][1]) or ("PROG2" in result[i][1])):
-            if (("P1" not in result[i][1]) and ("P2" not in result[i][1]) and ("DS" not in result[i][1])):
+            if (("CC1" in result[i][1]) or ("CC2" in result[i][1]) or ("CC3" in result[i][1])):
                 if (result[i][1] != result[i-1][1]):
                     prog.append(result[i])
             if (("P1" in result[i][1]) or ("P2" in result[i][1])):
                 if (result[i][1] != result[i-1][1]):
                     partiel.append(result[i])
-            if (("TP1" in result[i][1]) or ("TP2" in result[i][1]) or ("TP3" in result[i][1]) or ("TP4" in result[i][1]) or ("TP5" in result[i][1]) or ("TP6" in result[i][1]) or ("TP7" in result[i][1]) or ("TP8" in result[i][1]) or ("TP9" in result[i][1])):
-                if (result[i][1] != result[i-1][1]):
-                    tp.append(result[i])
             if ("DS" in result[i][1]):
                 if (result[i][1] != result[i-1][1]):
                     ds.append(result[i])
+    # print(prog, partiel, ds, coef)
     return prog, partiel, ds, coef
+
+def TPC(result):
+    tpC = 0
+    for i in range(len(result)):
+        if ("PRAT" in result[i][1]):
+            tpC = float(locale.atof(result[i][3]))
+    # print(tpC)
+    return tpC
+
+def Arduino(result):
+    ardui = 0
+    for i in range(len(result)):
+        if ("ARDUINO1" in result[i][1]):
+            ardui = float(locale.atof(result[i][3]))
+    # print(ardui)
+    return ardui
 
 def info(result):
     tp,coef = [],3
@@ -168,7 +190,7 @@ def physique(result):
     
     
     note = [noteopt, noteelec, TPelec, notemeca]
-    print(note)
+    # print(note)
     coef = [2,3,3,3]
     final = MoyenneC(note, coef)
     return final
@@ -233,6 +255,7 @@ def PROG(resultats):
     # print(matiere(prog(resultats)[1]))
     # print(matiere(prog(resultats)[2]))
     note = (Moyenne(matiere(prog(resultats)[0])[0]))
+    # print(note)
     if (note == 21):
         return "ERREUR prog CC"
     notep = (Moyenne(matiere(prog(resultats)[1])[0]))
@@ -240,8 +263,7 @@ def PROG(resultats):
         return "ERREUR prog partiel"
     noteds = (Moyenne(matiere(prog(resultats)[2])[0]))
     if (noteds == 21):
-        return "ERREUR optique DS"
-    
+        return "ERREUR prog DS"
     
     if (notep == 0):
         note = note*0.4 + noteds*0.6
@@ -252,6 +274,7 @@ def PROG(resultats):
     if ((note != 0) and (noteds != 0) and (notep != 0)):
         note = (note*0.4) + (((noteds*0.33)+(notep*0.67))*0.6) 
     final = (round(note,2))
+    # print(note,noteds,notep)
     return final
 
 def WEB(resultats):
@@ -284,12 +307,14 @@ def INFO(resultats):
     noteprog = PROG(resultats)
     noteweb = WEB(resultats)
     notetp = (Moyenne(matiere(info(resultats)[0])[0]))
-    if (noteprog == 0): note = noteweb
-    if (noteweb == 0): note = noteprog
-    else:
-        note = [noteprog, noteweb, notetp]
-        coef = [3,2,3]
-        note = MoyenneC(note, coef)
+    tpc = TPC(resultats)
+    ardui = Arduino(resultats)
+
+    note = [noteprog, noteweb, notetp, tpc, ardui]
+    # print(note)
+    coef = [3,2,3,2,2]
+    note = MoyenneC(note, coef)
+    # print(note)
     if (type(note) == float) :
         return note
     else:

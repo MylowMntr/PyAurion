@@ -1,0 +1,9 @@
+{
+    "rpc.appName": "Visual Studio Code",
+    "rpc.detailsViewing": "Sur {workspace}",
+    "rpc.enabled": false,
+    "rpc.showProblems": false,
+    "rpc.removeLowerDetails": true,
+    "rpc.problemsText": "",
+    "rpc.lowerDetailsViewing": ""
+}
