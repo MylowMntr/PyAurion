@@ -3,7 +3,7 @@ import locale
 locale.setlocale(locale.LC_ALL, 'fr_FR.utf8')
 from flask import Flask, render_template, request, session
 from . import app
-from .api import getnotes, getplanning, CalcMoyenne, validelogs
+from .api import getnotes, getplanning, CalcMoyenne,CalcMoyenneV2, validelogs
 import json
 from pathlib import Path
 import urllib.parse
@@ -32,9 +32,11 @@ def notes():
 @app.route("/moyennes/")
 def moyennes():
     if ("email" in session):
+        result = getnotes.main(session["email"],session["password"])
         return render_template(
             "moyennes.html",
-            moyennes = CalcMoyenne.main(session["email"],session["password"])  #,session["stocknote"]
+            moyennes = CalcMoyenne.main(result),  #,session["stocknote"]
+            moyennes2 = CalcMoyenneV2.main(result)  #,session["stocknote"]
         )
     else:
         return render_template(

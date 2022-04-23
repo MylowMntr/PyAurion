@@ -344,8 +344,7 @@ def DEV(resultats):
 # DEV()
 
 
-def main(username,password):
-    result = getnotes.main(username,password)
+def main(result):
     # print(result)
     resultats = TableNotes.table(result)  #Liste de liste de note sous forme ['07/01/2022', ['2122', 'ISEN', 'CIR1', 'S1', 'WEB', 'P1'], 'Partiel de Technologies Web', ' 16.60', '24']
     # print(resultats)

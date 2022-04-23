@@ -159,8 +159,8 @@ def POSTnote(viewS, cookies,baseURL):
         }
     conn.request("POST", "/faces/ChoixIndividu.xhtml", body=payload, headers=headers, encode_chunked=True)
     res = conn.getresponse()
-    resS = res.status
-    resH = res.headers
+    # resS = res.status
+    # resH = res.headers
     resR = res.read()
     # print(resS)
     # print(resH)
