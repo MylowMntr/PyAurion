@@ -231,7 +231,8 @@ def rangement(result):
 
 def main(result):
     resultats = TableNotes.table(result)  #Liste de liste de note sous forme ['07/01/2022', ['2122', 'ISEN', 'CIR1', 'S1', 'WEB', 'P1'], 'Partiel de Technologies Web', ' 16.60', '24']
-    
-    return rangement(resultats)
-
+    try:
+        return rangement(resultats)
+    except ZeroDivisionError:
+        return 0,0,0,0
 # print(main(0,0))

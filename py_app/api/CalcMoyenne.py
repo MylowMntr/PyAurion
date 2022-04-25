@@ -175,18 +175,19 @@ def physique(result):
             if (("P1" not in result[i][1]) and ("P2" not in result[i][1])):
                 if (result[i][1] != result[i-1][1]):
                     meca.append(result[i])
-            # else:
-            #     if (result[i][1] != result[i-1][1]):
-            #         partiel.append(result[i])
+            else:
+                if (result[i][1] != result[i-1][1]):
+                    partiel.append(result[i])
     # print(meca)
     note = Moyenne(matiere(meca)[0])
     # print(note)
     if (note == 21):
         return "ERREUR meca CC"
-    # notep = Moyenne(matiere(partiel)[0])
-    # if (notep == 21):
-    #     return "ERREUR meca Partiel"
-    notemeca = note
+    notep = Moyenne(matiere(partiel)[0])
+    if (notep == 21):
+        return "ERREUR meca Partiel"
+
+    notemeca = (note*0.4) + (notep*0.6)
     
     
     note = [noteopt, noteelec, TPelec, notemeca]
@@ -348,5 +349,7 @@ def main(result):
     # print(result)
     resultats = TableNotes.table(result)  #Liste de liste de note sous forme ['07/01/2022', ['2122', 'ISEN', 'CIR1', 'S1', 'WEB', 'P1'], 'Partiel de Technologies Web', ' 16.60', '24']
     # print(resultats)
-    
-    return MATHS(resultats),PHYSIQUE(resultats),INFO(resultats),DEV(resultats)
+    try:
+        return MATHS(resultats),PHYSIQUE(resultats),INFO(resultats),DEV(resultats)
+    except ZeroDivisionError:
+        return 0,0,0,0
