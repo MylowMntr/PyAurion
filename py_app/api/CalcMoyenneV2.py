@@ -227,12 +227,30 @@ def rangement(result):
             else:
                 CR.ajouter(float(locale.atof(result[i][3])))
     
-    return Maths.moyenne(),Physique.moyenne(),Info.moyenne(),Dev.moyenne()
+    try: 
+        MM = Maths.moyenne()
+    except ZeroDivisionError:
+        MM = 0
+    
+    try: 
+        PM =  Physique.moyenne()
+    except ZeroDivisionError:
+        PM = 0
+    
+    try: 
+        IM = Info.moyenne()
+    except ZeroDivisionError:
+        IM = 0
+    
+    try: 
+        DM =  Dev.moyenne()
+    except ZeroDivisionError:
+        DM = 0
+        
+    return MM,PM,IM,DM
 
 def main(result):
     resultats = TableNotes.table(result)  #Liste de liste de note sous forme ['07/01/2022', ['2122', 'ISEN', 'CIR1', 'S1', 'WEB', 'P1'], 'Partiel de Technologies Web', ' 16.60', '24']
-    try:
-        return rangement(resultats)
-    except ZeroDivisionError:
-        return 0,0,0,0
+    
+    return rangement(resultats)
 # print(main(0,0))
