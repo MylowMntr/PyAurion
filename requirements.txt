@@ -1,8 +1,7 @@
-http.client
+lxml
 requests
 bs4
 datetime
 pytz
-pathlib
 flask
 flaskwebgui

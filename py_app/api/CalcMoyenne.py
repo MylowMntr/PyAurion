@@ -190,9 +190,33 @@ def physique(result):
     notemeca = (note*0.4) + (notep*0.6)
     
     
-    note = [noteopt, noteelec, TPelec, notemeca]
+    
+    thermo,partiel = [],[]
+    for i in range(len(result)):
+        if ("THERMO" in result[i][1]) : 
+            # print(result[i])
+            if (("P1" not in result[i][1]) and ("P2" not in result[i][1])):
+                if (result[i][1] != result[i-1][1]):
+                    thermo.append(result[i])
+                    # print(result[i])
+            else:
+                if (result[i][1] != result[i-1][1]):
+                    partiel.append(result[i])
+    # print(meca)
+    note = Moyenne(matiere(thermo)[0])
     # print(note)
-    coef = [2,3,3,3]
+    # if (note == 21):
+    #     return "ERREUR meca CC"
+    # notep = Moyenne(matiere(partiel)[0])
+    if (note == 21):
+        return "ERREUR thermo Partiel"
+
+    notethermo = note
+    
+    
+    note = [noteopt, noteelec, TPelec, notemeca, notethermo]
+    # print(note)
+    coef = [2,3,3,3,1]
     final = MoyenneC(note, coef)
     return final
 

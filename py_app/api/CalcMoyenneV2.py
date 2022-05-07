@@ -99,9 +99,9 @@ def rangement(result):
     Elec = cours(3)
     ElecTP = cours(3)
     Meca = cours(3)
-    # Thermo = cours(1)
+    Thermo = cours(1)
     Physique = UE()
-    Physique.cours.extend((Optique,Elec,ElecTP,Meca))
+    Physique.cours.extend((Optique,Elec,ElecTP,Meca,Thermo))
     
     Prog1 = cours(3)
     ProgTPS1 = cours(3)
@@ -152,7 +152,7 @@ def rangement(result):
                     MathTpS1.ajouter(float(locale.atof(result[i][3])))
                 if ("S2" in result[i][1][3]):
                     MathTpS2.ajouter(float(locale.atof(result[i][3])))
-        if (("ELEC" in result[i][1][4]) or ("OPTIQUE" in result[i][1]) or ("MECA" in result[i][1])):
+        if (("ELEC" in result[i][1][4]) or ("OPTIQUE" in result[i][1]) or ("MECA" in result[i][1]) or ("THERMO" in result[i][1])):
             # print(result[i][1])
             if ("ELEC" in  result[i][1]):
                 if ("TP" in result[i][1][5]):
@@ -173,6 +173,14 @@ def rangement(result):
                 else:
                     # print(result[i])
                     Meca.ajouter(float(locale.atof(result[i][3]))) 
+            if ("THERMO" in  result[i][1]):
+                if ("P" in  result[i][1][5]):
+                    # print(result[i])
+                    Thermo.ajouterP(float(locale.atof(result[i][3])))
+                else:
+                    # print(result[i])
+                    Thermo.ajouter(float(locale.atof(result[i][3]))) 
+                    
         if (("PROG" in result[i][1][4]) or ("INFO" in result[i][1]) or ("WEB" in result[i][1])):
             # print(result[i][3])
             if ("PROG1" in  result[i][1]):
