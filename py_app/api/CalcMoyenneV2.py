@@ -122,7 +122,7 @@ def rangement(result):
     Sport1 = cours(2)
     Sport2 = cours(2)
     Dev = UE()
-    Dev.cours.extend((Anglais1, CR, Sport1))
+    Dev.cours.extend((Anglais1, Anglais2, CR, Sport1))
     
     for i in range(len(result)):
         if (("MATH" in result[i][1][4]) or ("MATHS" in result[i][1])):
