@@ -81,7 +81,7 @@ def POSTmain(viewS, cookies,baseURL):
 def POSTmainn(viewS, cookies,baseURL):
     viewS = ViewState(GETmain(cookies,baseURL))
     conn = http.client.HTTPSConnection("aurion.junia.com")
-    menuid = "1_1"
+    menuid = "2_1"
     payload = ( "form=form&form%3AlargeurDivCenter=1219&form%3Asauvegarde=&" +
                 "form%3Aj_idt772_focus=&form%3Aj_idt772_input=44323&" +
                 "form%3Asidebar=form%3Asidebar&form%3Asidebar_menuid=" + menuid

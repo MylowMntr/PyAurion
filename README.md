@@ -7,6 +7,7 @@ https://mylow.fr/pyaurion
 ## Description
 Aurion n'ayant pas d'API, il est difficile de s'y connecter. Je crée donc une WebApp pour permettre la visualisation des emplois du temps ainsi que des notes (ainsi que les moyennes).
 Cette dernière est en Python / Flask pour être disponible sous Android / iOS.
+Si problème, revoir getnote ligne 84: menuid
 
 ## Merci
 Au projet [Scorpion](https://github.com/LiamAbyss/Scorpion) et leurs développeurs qui m'ont apporté leur précieuse aide !

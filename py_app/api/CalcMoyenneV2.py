@@ -107,13 +107,13 @@ def rangement(result):
     ProgTPS1 = cours(3)
     WebS1 = cours(2)
     Prog2 = cours(2)
-    # ProgTPS2 = cours(2)
+    ProgTPS2 = cours(2)
     WebS2 = cours(2)
     Arduino = cours(2)
     # Projet = cours(3)
     Info = UE()
     # Info.cours.extend((Prog1,ProgTPS1,WebS1,Prog2,ProgTPS2,WebS2,Arduino,Projet))
-    Info.cours.extend((Prog1,ProgTPS1,WebS1,Prog2,WebS2,Arduino))
+    Info.cours.extend((Prog1,ProgTPS1,WebS1,Prog2,WebS2,Arduino,ProgTPS2))
     
     Anglais1 = cours(2)
     Anglais2 = cours(2)
@@ -122,7 +122,7 @@ def rangement(result):
     Sport1 = cours(2)
     Sport2 = cours(2)
     Dev = UE()
-    Dev.cours.extend((Anglais1, Anglais2, CR, Sport1))
+    Dev.cours.extend((Anglais1, Anglais2, CR, Sport1, Sport2, Epistemo))
     
     for i in range(len(result)):
         if (("MATH" in result[i][1][4]) or ("MATHS" in result[i][1])):
@@ -167,12 +167,15 @@ def rangement(result):
                 else:
                     Optique.ajouter(float(locale.atof(result[i][3]))) 
             if ("MECA" in  result[i][1]):
+                # print(result[i])
+                if ("TP" in  result[i][1][5]):
+                    ElecTP.ajouter(float(locale.atof(result[i][3])))
                 if ("P" in  result[i][1][5]):
-                    # print(result[i])
                     Meca.ajouterP(float(locale.atof(result[i][3])))
                 else:
                     # print(result[i])
-                    Meca.ajouter(float(locale.atof(result[i][3]))) 
+                    Meca.ajouter(float(locale.atof(result[i][3])))
+                    # print(result[i])
             if ("THERMO" in  result[i][1]):
                 if ("P" in  result[i][1][5]):
                     # print(result[i])
@@ -188,6 +191,8 @@ def rangement(result):
                     Prog1.ajouterP(float(locale.atof(result[i][3])))
                 if ("DS" in  result[i][1][5]):
                     Prog1.ajouterD(float(locale.atof(result[i][3])))
+                if ("TP" in  result[i][1][5]):
+                    ProgTPS1.ajouterD(float(locale.atof(result[i][3])))
                 else:
                     Prog1.ajouter(float(locale.atof(result[i][3])))
             if ("PROG2" in  result[i][1]):
@@ -195,8 +200,11 @@ def rangement(result):
                     Prog2.ajouterP(float(locale.atof(result[i][3])))
                 if ("DS" in  result[i][1][5]):
                     Prog2.ajouterD(float(locale.atof(result[i][3])))
+                if ("TP" in  result[i][1][5]):
+                    ProgTPS2.ajouter(float(locale.atof(result[i][3])))
                 else:
-                    Prog2.ajouter(float(locale.atof(result[i][3])))      
+                    Prog2.ajouter(float(locale.atof(result[i][3]))) 
+                    # print(result[i])     
             if ("ARDUINO1" in  result[i][1]):
                 Arduino.ajouter(float(locale.atof(result[i][3])))       
             if ("PRAT" in  result[i][1]):
@@ -215,6 +223,7 @@ def rangement(result):
                 if("S2" in result[i][1]):
                     if ("P" in  result[i][1][5]):
                         WebS2.ajouterP(float(locale.atof(result[i][3])))
+                        # print(result[i])
                     if ("DS" in  result[i][1][5]):
                         WebS2.ajouterD(float(locale.atof(result[i][3])))
                     else:
@@ -229,12 +238,14 @@ def rangement(result):
                 Sport1.ajouter(float(locale.atof(result[i][3])))
             if ("S2" in result[i][1][3]):
                 Sport2.ajouter(float(locale.atof(result[i][3])))
-        if ("COMM" in result[i][1][4]):
+        if ("COMM" in result[i][1][4] ):
             if ("DS" in result[i][1][5]):
                 CR.ajouterD(float(locale.atof(result[i][3])))
             else:
                 CR.ajouter(float(locale.atof(result[i][3])))
-    
+        if (("EPISTEMO" in result[i][1][4]) or ("LOGIQUE" in result[i][1][4])):
+            # print(result[i])
+            Epistemo.ajouter(float(locale.atof(result[i][3])))
     try: 
         MM = Maths.moyenne()
     except ZeroDivisionError:
