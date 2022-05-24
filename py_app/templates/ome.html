@@ -377,6 +377,19 @@ body {
   font-size: 32px;
   text-align: center;
 }
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(359deg);
+  }
+}
+
+.turning {
+  animation: rotate linear 2s infinite;
+}
 </style>
 
 </head>
@@ -447,7 +460,7 @@ body {
   <form action="/moy">
     <div class="login">
       <div class="co">Connecté !</div>
-      <button class="login-button">Voir les moyennes</button>
+      <button class="login-button" onclick="loadingEyes()">Voir les moyennes</button>
     </div>
   </form>
 <!-- partial -->
@@ -458,6 +471,12 @@ body {
   let showPasswordButton = document.querySelector('.password-button');
   let face = document.querySelector('.face');
   
+  function loadingEyes() {
+    document.querySelectorAll('.eye').forEach((z) => {
+      z.classList.add('turning')
+    })
+  }
+
   passwordInput.addEventListener('focus', event => {
     document.querySelectorAll('.hand').forEach(hand => {
       hand.classList.add('hide');
