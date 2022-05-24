@@ -122,7 +122,7 @@ def log():
         "log.html",
     )
     
-@app.route("/moy/")
+@app.route("/moy")
 def moy():
     if ("email" in session):
         result = getnotes.main(session["email"],session["password"])

@@ -2,10 +2,13 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Login Page Form</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>PyAurion</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-<style>* {
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+* {
   box-sizing: border-box;
 }
 body {
@@ -14,6 +17,8 @@ body {
   background-image: linear-gradient(to top right, #f9a743, #f9db5f);
   overflow: hidden;
   font-size: 12px;
+  font-family: 'Fredoka One', cursive;
+  display: flex;
 }
 .inspiration {
   position: fixed;
@@ -22,7 +27,7 @@ body {
   padding: 10px;
   text-align: center;
   text-decoration: none;
-  font-family: 'Gill Sans', sans-serif;
+  font-family: 'Fredoka One', cursive;
   font-size: 12px;
   color: #969696;
 }
@@ -31,13 +36,13 @@ body {
 }
 .center {
   position: relative;
-  top: 50%;
-  left: 50%;
+  margin: auto;
   display: inline-block;
   width: 275px;
   height: 490px;
   border-radius: 3px;
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
+  transform: scale(1.3);
   overflow: hidden;
   background-image: linear-gradient(to top right, #f9a743, #f9db5f);
 
@@ -46,8 +51,7 @@ body {
 }
 @media screen and (max-height: 500px) {
   .center {
-    transition: transform 0.5s;
-    transform: translate(-50%, -50%) scale(0.8);
+    transform: translate(0, -10%) scale(0.7);
   }
 }
 .center .ear {
@@ -313,6 +317,7 @@ body {
   background-color: #243946;
   color: #fff;
   transition: transform 0.1s;
+  font-family: 'Fredoka One', cursive;
 }
 .center .login .login-button:active {
   transform: scale(0.95);
@@ -356,6 +361,10 @@ body {
   50% {
     transform: rotateX(60deg);
   }
+}
+
+.error{
+  text-align: center;
 }
 </style>
 
@@ -425,9 +434,6 @@ body {
 
   <form method="POST" action="/log">
     <div class="login">
-      {% if error %}  
-      <p><strong>Erreur</strong>: {{error}}</p>  
-      {% endif %}  
       <label>
         <div class="fa fa-envelope"></div>
         <input class="username" type="email" name="email" autocomplete="on" placeholder="Email Junia"/>
@@ -437,6 +443,9 @@ body {
         <input class="password" type="password" name="password" autocomplete="off" placeholder="Mot de passe"/>
         <!-- <button class="password-button">Afficher</button> -->
       </label>
+      {% if error %}  
+      <div class="error"><p><strong>Erreur</strong>: {{error}}</p> </div> 
+      {% endif %}  
       <button class="login-button">Login</button>
     </div>
   </form>
