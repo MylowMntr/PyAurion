@@ -230,14 +230,26 @@ def rangement(result):
                         WebS2.ajouter(float(locale.atof(result[i][3])))
         if ("ANGLAIS" in result[i][1][4]):
             if ("S1" in result[i][1][3]):
-                Anglais1.ajouter(float(locale.atof(result[i][3])))
+                try:
+                    Anglais1.ajouter(float(locale.atof(result[i][3])))
+                except ValueError:
+                    pass
             if ("S2" in result[i][1][3]):
-                Anglais2.ajouter(float(locale.atof(result[i][3])))
+                try:
+                    Anglais2.ajouter(float(locale.atof(result[i][3])))
+                except ValueError:
+                    pass
         if ("SPORT" in result[i][1][4]):
             if ("S1" in result[i][1][3]):
-                Sport1.ajouter(float(locale.atof(result[i][3])))
+                try:
+                    Sport1.ajouter(float(locale.atof(result[i][3])))
+                except ValueError:
+                    pass
             if ("S2" in result[i][1][3]):
-                Sport2.ajouter(float(locale.atof(result[i][3])))
+                try:
+                    Sport2.ajouter(float(locale.atof(result[i][3])))
+                except ValueError:
+                    pass
         if ("COMM" in result[i][1][4] ):
             if ("DS" in result[i][1][5]):
                 CR.ajouterD(float(locale.atof(result[i][3])))
