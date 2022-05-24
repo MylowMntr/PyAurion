@@ -10,7 +10,7 @@ import urllib.parse
 
 @app.route("/")
 def home():
-    return render_template("home.html")
+    return render_template("log.html")
 
 @app.route("/lay/")
 def shesh():
@@ -90,3 +90,48 @@ def login():
         "login.html",
     )
     
+
+@app.route('/log', methods=['GET', 'POST'])
+def log():
+    # handle the POST request
+    if request.method == 'POST':
+        session["email"] = request.form.get('email')
+        session["email"] = urllib.parse.quote(session["email"])
+        
+        session["password"] = request.form.get('password')
+        session["password"] = urllib.parse.quote(session["password"])
+        
+        # session["stocknote"] = request.form.getlist('note')
+        # if (session["stocknote"] != []):
+        #     session["stocknote"] = True
+        # else:
+        #     session["stocknote"] = False
+        # print(session["stocknote"])
+        if (validelogs.main(0, session["email"], session["password"]) != True):
+            error = "Identifiants invalides ! Réessaye"
+            return render_template(
+                "log.html",error=error
+            )
+        
+        return render_template(
+            "ome.html"
+        )
+            
+    # otherwise handle the GET request
+    return render_template(
+        "log.html",
+    )
+    
+@app.route("/moy/")
+def moy():
+    if ("email" in session):
+        result = getnotes.main(session["email"],session["password"])
+        return render_template(
+            "moy.html",
+            # moyennes = CalcMoyenne.main(result),  #,session["stocknote"]
+            moyennes2 = CalcMoyenneV2.main(result)  #,session["stocknote"]
+        )
+    else:
+        return render_template(
+        "login.html",
+    )
