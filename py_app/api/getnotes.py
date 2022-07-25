@@ -50,12 +50,24 @@ def ViewState(page):
     soup = BeautifulSoup(page, "html.parser")
     # print(soup)
     viewS = soup.find("input", {'id': "j_id1:javax.faces.ViewState:0"}).attrs['value']
+    
+    # print(soup)
+    menuid = soup.find("span", text="Scolarité")
+    # print(menuid)
+    menuid = str(menuid.previous_element.previous_element.previous_element.previous_element.previous_element)
+    # print(menuid)
+    menuid = menuid.split("form:sidebar_menuid':'")
+    menuid = menuid[1].split("'})")
+    menuid = menuid[0]
+    menuid = str( int(menuid) + 1 ) + "_1"
+    # print(menuid)
+    
     # print(viewS)
-    return viewS
+    return viewS,menuid
 
 #requete POST de mainpage (pour planning)
 def POSTmain(viewS, cookies,baseURL):
-    viewS = ViewState(GETmain(cookies,baseURL))
+    viewS = ViewState(GETmain(cookies,baseURL))[0]
     conn = http.client.HTTPSConnection("aurion.junia.com")
     payload = ("javax.faces.partial.ajax=true&javax.faces.source=form%3Aj_idt52&" +
                 "javax.faces.partial.execute=form%3Aj_idt52&javax.faces.partial.render=form%3Asidebar&" +
@@ -79,9 +91,10 @@ def POSTmain(viewS, cookies,baseURL):
 
 #requete POST de mainpage (pour planning)
 def POSTmainn(viewS, cookies,baseURL):
-    viewS = ViewState(GETmain(cookies,baseURL))
+    view = ViewState(GETmain(cookies,baseURL))
+    viewS = view[0]
     conn = http.client.HTTPSConnection("aurion.junia.com")
-    menuid = "2_1"
+    menuid = view[1]
     payload = ( "form=form&form%3AlargeurDivCenter=1219&form%3Asauvegarde=&" +
                 "form%3Aj_idt772_focus=&form%3Aj_idt772_input=44323&" +
                 "form%3Asidebar=form%3Asidebar&form%3Asidebar_menuid=" + menuid
@@ -115,7 +128,7 @@ def GETnote(cookies,baseURL):
     return response.text
 
 def POSTnote(viewS, cookies,baseURL):
-    viewS = ViewState(GETnote(cookies,baseURL))
+    viewS = ViewState(GETnote(cookies,baseURL))[0]
     start = str(0)
     rows = str(10000)
     # payload = ("javax.faces.partial.ajax=true&javax.faces.source=form%3Aj_idt149&javax.faces.partial.execute=form%3AdivRecherche&"
@@ -162,9 +175,11 @@ def POSTnote(viewS, cookies,baseURL):
     # resS = res.status
     # resH = res.headers
     resR = res.read()
+    
     # print(resS)
     # print(resH)
     x = resR.decode('utf-8')
+    # print(x)
     x = x.split("[CDATA[")
     x = x[3].split("]]")
     return(x[0])
@@ -177,7 +192,7 @@ def main(username,password):
     baseURL = 'https://aurion.junia.com'
     
     cookies = Cookies(POSTlogin(username,password))
-    viewS = ViewState(GETmain(cookies,baseURL))
+    viewS = ViewState(GETmain(cookies,baseURL))[0]
     
     GETmain(cookies,baseURL)
     POSTmain(viewS,cookies,baseURL)
@@ -186,5 +201,4 @@ def main(username,password):
     
     return(POSTnote(viewS,cookies,baseURL))
 
-# main()
 # print(cookies, viewS)
