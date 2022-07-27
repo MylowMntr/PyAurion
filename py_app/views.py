@@ -56,7 +56,11 @@ def plan():
 
 @app.route('/data')
 def return_data():
-    return getplanning.main(0,session["email"],session["password"])
+    start = request.args.get('start')
+    end = request.args.get('end')
+    
+    # print(start,end)
+    return getplanning.main(start,end,session["email"],session["password"])
 
 
 @app.route('/login', methods=['GET', 'POST'])
