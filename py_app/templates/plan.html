@@ -27,9 +27,12 @@ Planning
 		integrity="sha512-o0rWIsZigOfRAgBxl4puyd0t6YKzeAw9em/29Ag7lhCQfaaua/mDwnpE2PVzwqJ08N7/wqrgdjc2E0mwdSY2Tg=="
 		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/locale-all.min.js"></script>
+
 	<script>
-		var today = new Date();
-		var today = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+		// var today = new Date();
+		// var today = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+		var today = moment().toDate();
 		$(document).ready(function () {
 
 			$('#calendar').fullCalendar({
@@ -44,8 +47,14 @@ Planning
 				eventStartEditable: false,
 				eventLimit: true, // allow "more" link when too many events
 				defaultDate: today,
+				
 				defaultView: 'agendaWeek',
 				timeFormat: 'H:mm',
+				nowIndicator : true,
+				minTime : "07:00:00",
+				maxTime : "22:30:00",
+
+
 				hiddenDays: [0],
 				events: {
 					url: '/data',

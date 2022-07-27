@@ -119,14 +119,15 @@ def POSTplan(viewS, cookies, baseURL, start, end):
 
     # #date du lundi en Milliseconde
     # Monday = Monday.strftime("%d.%m.%Y")+' 00:00:00,00'
-    # Monday = int((datetime.strptime(Monday,'%d.%m.%Y %H:%M:%S,%f')).timestamp()* 1000 + (0*604800000))
-    # # UNE SEMAINE = 604800000ms
-    
+    # Monday = int((datetime.strptime(Monday,'%d.%m.%Y %H:%M:%S,%f')).timestamp()* 1000 + (0*604800000))    
     # #date en Milliseconde du lundi (start) et du samedi (end)
     # start = Monday
     # end = Monday + (6*24*60*60*1000)
     # # print(start, end)
 
+    # # UNE SEMAINE = 604800000
+    # # UN MOIS = 2629800000
+    
     monday = start
     try:
         start = datetime.strptime(str(start),'%Y-%m-%dT00:00:00')
