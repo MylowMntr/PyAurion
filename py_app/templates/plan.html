@@ -61,6 +61,7 @@ Planning
 					error: function () {
 						$('#script-warning').show();
 					}
+					
 				},
 				loading: function (bool) {
 					$('#loading').toggle(bool);
@@ -112,8 +113,13 @@ Planning
 
 		<div id='loading'>loading...</div>
 
-		<div id='calendar'></div>
-
+		<div id='calendar'>
+			<form method="post" action="/ics">
+				<input type="submit" value="Exporter" name="export"/>
+			</form>
+		</div>
+		
+		
 	</body>
 
 </html>
