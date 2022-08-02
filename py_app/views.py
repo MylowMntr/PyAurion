@@ -1,14 +1,14 @@
 from datetime import datetime
 import locale
-locale.setlocale(locale.LC_ALL, 'fr_FR.utf8')
+locale.setlocale(locale.LC_ALL, 'fr_FR.utf-8')
 from flask import Flask, render_template, request, session
 from . import app
-from .api import getnotes, getplanning, CalcMoyenne,CalcMoyenneV2, validelogs
+from .api import getnotes, getplanning, CalcMoyenne,CalcMoyenneV2, validelogs, parse
 import json
 from pathlib import Path
 import urllib.parse
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def home():
     return render_template("log.html")
 
@@ -54,13 +54,23 @@ def plan():
         "login.html",
     )
 
-@app.route('/data')
+@app.route('/data', methods=['GET', 'POST'])
 def return_data():
     start = request.args.get('start')
     end = request.args.get('end')
     
     # print(start,end)
     return getplanning.main(start,end,session["email"],session["password"])
+
+
+@app.route('/ics', methods=['GET', 'POST'])
+def return_cal():
+    # Exporte une année
+    start = '2021-08-01' #Semaine : 2022-03-21T13:30:00+0100
+    end = '2022-07-28' #Mois : 08-01&end=2022-09-11
+    cal=getplanning.main(start,end,session["email"],session["password"])
+    #parse.main(cal)
+    return parse.main(cal)
 
 
 @app.route('/login', methods=['GET', 'POST'])
