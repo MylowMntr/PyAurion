@@ -430,35 +430,76 @@
       }
     }
 
-    .center .login .co {
-      width: 100%;
-      height: 35px;
-      border: none;
-      border-radius: 30px;
-      width: calc(100% - 40px);
-      margin: 20px 20px 0;
-      outline: none;
-      /* background-color: #243946; */
-      color: #fff;
 
-      font-size: 32px;
-      text-align: center;
+    .bottom {
+      background: #243946;
+
+      position: absolute;
+      bottom: 0;
+      z-index: 5;
+      margin: auto;
+      display: inline-block;
+
+      width: 275px;
+      height: 43px;
+      transform: translate(-50%, -50%);
+      transform: scale(1.3);
+      overflow: hidden;
+
+      border: white solid 3px;
+      border-top-width: 0px;
+      /* 
+			border-radius: 3px;
+			border-bottom-right-radius: 30px;
+			border-bottom-left-radius: 30px; */
     }
 
-    @keyframes rotate {
-      0% {
-        transform: rotateZ(0deg);
-      }
+    .mainbutton {
+      width: 30px;
+      height: 30px;
+      display: block;
 
-      100% {
-        transform: rotateZ(359deg);
-      }
+      border: 2px solid white;
+      border-radius: 64px;
+      margin: auto;
+      top: 3px;
+      position: relative;
     }
 
-    .turning {
-      animation: rotate linear 2s infinite;
+    .mainbutton svg {
+      display: block;
+      margin: auto;
     }
+
+    .tab {
+      width: 230px;
+      height: 190px;
+      margin: 0 20px;
+      overflow: auto;
+    }
+
+    tr {
+      border-bottom: 1px solid #243946;
+      margin-top: 8px;
+      display: grid;
+    }
+
+    tr>td:nth-child(3) {
+      font-size: 115%;
+      margin: 5px;
+    }
+
+    .heure{
+      margin: 5px;
+      margin-left: 30px;
+      font-size: 120%;
+    }
+
+    /* tr>td:nth-child(5) {
+      display: none;
+    } */
   </style>
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
 
@@ -497,60 +538,15 @@
         </div>
       </div>
     </div>
-    <div class="hands">
-      <div class="hand hand--left">
-        <div class="finger">
-          <div class="bone"></div>
-          <div class="nail"></div>
-        </div>
-        <div class="finger">
-          <div class="bone"></div>
-          <div class="nail"></div>
-        </div>
-        <div class="finger">
-          <div class="bone"></div>
-          <div class="nail"></div>
-        </div>
-      </div>
-      <div class="hand hand--right">
-        <div class="finger">
-          <div class="bone"></div>
-          <div class="nail"></div>
-        </div>
-        <div class="finger">
-          <div class="bone"></div>
-          <div class="nail"></div>
-        </div>
-        <div class="finger">
-          <div class="bone"></div>
-          <div class="nail"></div>
-        </div>
+
+    <div class="login">
+      <p class="heure"> Nombre d'heures total: <span style="color: #476375;">{{abs[1]}}</span></p>
+      <div class="tab">
+        <table class="notee">
+          {{ abs[0] | safe }}
+        </table>
       </div>
     </div>
-
-
-
-    <form action="/plann">
-      <div class="login">
-        <div class="co">Connecté !</div>
-        <button class="login-button" onclick="loadingEyes()">Voir le planning</button>
-      </div>
-    </form>
-    <form action="/notee">
-      <div class="login">
-        <button class="login-button" onclick="loadingEyes()">Voir les notes</button>
-      </div>
-    </form>
-    <form action="/abs">
-      <div class="login">
-        <button class="login-button" onclick="loadingEyes()">Voir les absences</button>
-      </div>
-    </form>
-    <!-- <form action="/moy">
-      <div class="login">
-        <button class="login-button" onclick="loadingEyes()">🚧Voir les moyennes🚧</button>
-      </div>
-    </form> -->
     <!-- partial -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.min.js'></script>
     <script>
@@ -558,12 +554,6 @@
       let passwordInput = document.querySelector('.password');
       let showPasswordButton = document.querySelector('.password-button');
       let face = document.querySelector('.face');
-
-      function loadingEyes() {
-        document.querySelectorAll('.eye').forEach((z) => {
-          z.classList.add('turning')
-        })
-      }
 
       passwordInput.addEventListener('focus', event => {
         document.querySelectorAll('.hand').forEach(hand => {
@@ -616,6 +606,21 @@
         }
       });</script>
 
+    <div class="bottom">
+      <a href="../ome">
+        <div class="mainbutton">
+          <svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" style="fill: rgba(255, 255, 255, 1);">
+            <path
+              d="M3 13h1v7c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-7h1a1 1 0 0 0 .707-1.707l-9-9a.999.999 0 0 0-1.414 0l-9 9A1 1 0 0 0 3 13zm9-8.586 6 6V15l.001 5H6v-9.586l6-6z">
+            </path>
+            <path
+              d="M12 18c3.703 0 4.901-3.539 4.95-3.689l-1.9-.621c-.008.023-.781 2.31-3.05 2.31-2.238 0-3.02-2.221-3.051-2.316l-1.899.627C7.099 14.461 8.297 18 12 18z">
+            </path>
+          </svg>
+        </div>
+      </a>
+    </div>
+  </div>
 </body>
 
 </html>
