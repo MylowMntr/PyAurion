@@ -28,7 +28,18 @@ def notes():
         return render_template(
         "login.html",
     )
-        
+@app.route("/notee/")
+def notee():
+    if ("email" in session):
+        return render_template(
+            "notee.html",
+            notes=getnotes.main(session["email"],session["password"]),
+        )
+    else:
+        return render_template(
+        "login.html",
+    )
+     
 @app.route("/moyennes/")
 def moyennes():
     if ("email" in session):
@@ -54,7 +65,31 @@ def plan():
         return render_template(
         "login.html",
     )
+@app.route("/plann/")
+def plann():
+    if ("email" in session):
+        session["upPlan"] = 0
+        return render_template(
+            "plann.html",
+        )
+    else:
+        return render_template(
+        "login.html",
+    )
 
+@app.route("/ome/")
+def ome():
+    if ("email" in session):
+        session["upPlan"] = 0
+        return render_template(
+            "ome.html",
+        )
+    else:
+        return render_template(
+        "login.html",
+    )
+     
+        
 @app.route('/data', methods=['GET', 'POST'])
 def return_data():
     start = request.args.get('start')
