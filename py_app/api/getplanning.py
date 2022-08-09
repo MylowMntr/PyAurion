@@ -134,12 +134,14 @@ def POSTplan(viewS, cookies, baseURL, start, end):
     except ValueError:
         start = datetime.strptime(str(start),'%Y-%m-%d')
     start = int(start.timestamp() * 1000)
+    start = start - 3*2629800000
 
     try:
         end = datetime.strptime(str(end),'%Y-%m-%dT00:00:00')
     except ValueError:
         end = datetime.strptime(str(end),'%Y-%m-%d')
     end = int(end.timestamp() * 1000)
+    end = end + 3*2629800000
 
     #calcul de l'offset 
     tz = datetime.now()
@@ -156,7 +158,7 @@ def POSTplan(viewS, cookies, baseURL, start, end):
     formId = "117"
     tz = str(-tz)
     
-    # print(start, end, tz, week_number, year_number, formId)
+    print(start, end, tz, week_number, year_number, formId)
     
 
     payload = ("javax.faces.partial.ajax=true&javax.faces.source=form%3Aj_idt" + formId

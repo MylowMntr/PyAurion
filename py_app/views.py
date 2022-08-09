@@ -47,6 +47,7 @@ def moyennes():
 @app.route("/plan/")
 def plan():
     if ("email" in session):
+        session["upPlan"] = 0
         return render_template(
             "plan.html",
         )
@@ -59,9 +60,14 @@ def plan():
 def return_data():
     start = request.args.get('start')
     end = request.args.get('end')
-    
     # print(start,end)
-    return getplanning.main(start,end,session["email"],session["password"])
+    
+    if ("data" not in session or session["data"] == "[]" or session["upPlan"] == 0):
+        session["data"] = getplanning.main(start,end,session["email"],session["password"])
+        session["upPlan"] = 1
+        
+    # print(session["data"])
+    return session["data"]
 
 
 @app.route('/ics', methods=['GET', 'POST'])
