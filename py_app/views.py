@@ -1,5 +1,4 @@
 from datetime import datetime
-from dateutil.relativedelta import relativedelta
 import locale
 locale.setlocale(locale.LC_ALL, 'fr_FR.utf-8')
 from flask import Flask, render_template, request, session
@@ -117,14 +116,16 @@ def return_data():
 
 @app.route('/ics', methods=['GET', 'POST'])
 def return_cal():
-    # Exporte les 7 prochains mois 
+    # Exporte les 6 prochains mois 
     ajd=datetime.now()
     start = datetime.strftime(ajd, '%Y-%m')
     start = start+"-01"
 
-    end = (ajd + relativedelta(months = 7))
-    end=datetime.strftime(end, '%Y-%m')
-    end=end+"-28"
+    end = datetime.strptime(str(start),'%Y-%m-%d')
+    end = int(end.timestamp())
+    end += 6*30*24*60*60
+    end = datetime.fromtimestamp(end)
+    end = datetime.strftime(end, '%Y-%m-%d')
 
     #Semaine : 2022-03-21T13:30:00+0100
     #Mois : 2022-09-11

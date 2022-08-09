@@ -5,4 +5,3 @@ datetime
 pytz
 flask
 flaskwebgui
-dateutil
