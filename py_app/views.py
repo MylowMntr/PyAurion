@@ -1,7 +1,7 @@
 from datetime import datetime
 import locale
 locale.setlocale(locale.LC_ALL, 'fr_FR.utf-8')
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, make_response
 from . import app
 from .api import getnotes, getplanning, CalcMoyenne,CalcMoyenneV2, validelogs, parse, getabs
 import json
@@ -10,6 +10,12 @@ import urllib.parse
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
+    if 'email' in request.cookies:
+        session["email"] = request.cookies.get('email')
+        session["password"] = request.cookies.get('password')
+        return render_template(
+            "ome.html"
+        )
     return render_template("log.html")
 
 @app.route("/lay/")
@@ -124,6 +130,8 @@ def return_cal():
     return parse.main(cal)
 
 
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     # handle the POST request
@@ -146,10 +154,12 @@ def login():
                 "login.html",error=error
             )
         
-        return render_template(
-            "home.html"
-        )
-            
+        
+        resp = make_response(render_template("home.html"))
+        resp.set_cookie('email', session["email"])
+        resp.set_cookie('password', session["password"])
+        return resp
+                
     # otherwise handle the GET request
     return render_template(
         "login.html",
@@ -178,15 +188,18 @@ def log():
                 "log.html",error=error
             )
         
-        return render_template(
-            "ome.html"
-        )
-            
+        
+        resp = make_response(render_template("ome.html"))
+        resp.set_cookie('email', session["email"], max_age=378432000)
+        resp.set_cookie('password', session["password"], max_age=378432000)
+        return resp
+                
     # otherwise handle the GET request
     return render_template(
         "log.html",
     )
     
+
 @app.route("/moy")
 def moy():
     if ("email" in session):

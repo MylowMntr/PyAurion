@@ -1,6 +1,6 @@
 from . import TableNotes, getnotes
 import locale
-locale.setlocale(locale.LC_ALL, 'fr_FR')
+locale.setlocale(locale.LC_ALL, 'fr_FR.utf-8')
 
 
 def maths(result):
