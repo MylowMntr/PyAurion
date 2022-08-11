@@ -2,10 +2,15 @@
 Projet personnel de connexion à Aurion en Python !
 
 
-### Actuellement
+## Actuellement
 --> Actuellement disponible [ici](https://mylow.fr/pa)
---> Application Android en cours
+--> Application Android [ici](https://play.google.com/store/apps/details?id=fr.mylow.pyaurion)
 --> Pas d'iOS (question de prix)
+
+## A faire
+"Moyennes de classe" en enregistrant les notes
+Notepad pour enregistrer les devoirs (par exemple)
+Si vous avez des propositions, n'hésitez pas à me contacter <3
 
 
 ## Description
