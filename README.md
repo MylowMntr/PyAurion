@@ -28,5 +28,4 @@ Si vous voulez participer au projet, rendez-vous sur mon [site](https://mylow.fr
 
 ## License
 MIT License
-
 Copyright (c) 2022 [Mylow](https://mylow.fr)
