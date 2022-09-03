@@ -122,11 +122,21 @@ def return_data():
 
 @app.route('/ics', methods=['GET', 'POST'])
 def return_cal():
-    # Exporte une année
-    start = '2021-08-01' #Semaine : 2022-03-21T13:30:00+0100
-    end = '2022-07-28' #Mois : 08-01&end=2022-09-11
+    # Exporte les 6 prochains mois 
+    ajd=datetime.now()
+    start = datetime.strftime(ajd, '%Y-%m')
+    start = start+"-01"
+
+    end = datetime.strptime(str(start),'%Y-%m-%d')
+    end = int(end.timestamp())
+    end += 6*30*24*60*60
+    end = datetime.fromtimestamp(end)
+    end = datetime.strftime(end, '%Y-%m-%d')
+
+    #Semaine : 2022-03-21T13:30:00+0100
+    #Mois : 2022-09-11
     cal=getplanning.main(start,end,session["email"],session["password"])
-    #parse.main(cal)
+    # Retour à améliorer ...
     return parse.main(cal)
 
 
