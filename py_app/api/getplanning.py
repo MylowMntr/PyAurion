@@ -134,14 +134,14 @@ def POSTplan(viewS, cookies, baseURL, start, end):
     except ValueError:
         start = datetime.strptime(str(start),'%Y-%m-%d')
     start = int(start.timestamp() * 1000)
-    start = start - 3*2629800000
+    start = start - 0*2629800000
 
     try:
         end = datetime.strptime(str(end),'%Y-%m-%dT00:00:00')
     except ValueError:
         end = datetime.strptime(str(end),'%Y-%m-%d')
     end = int(end.timestamp() * 1000)
-    end = end + 3*2629800000
+    end = end + 2*2629800000
 
     #calcul de l'offset 
     tz = datetime.now()

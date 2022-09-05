@@ -19,8 +19,8 @@
 			height: 100vh;
 			background-image: linear-gradient(to top right, #f9a743, #f9db5f);
 			overflow: hidden;
-			font-size: 12px;
-			font-family: 'Fredoka One', cursive;
+			font-size: 11px;
+			font-family: 'Fredoka One';
 			display: flex;
 		}
 
@@ -31,8 +31,6 @@
 			padding: 10px;
 			text-align: center;
 			text-decoration: none;
-			font-family: 'Fredoka One', cursive;
-			font-size: 12px;
 			color: #969696;
 		}
 
@@ -431,7 +429,7 @@
 			}
 		}
 
-		.bottom{
+		.bottom {
 			background: #243946;
 
 			position: absolute;
@@ -448,13 +446,13 @@
 
 			border: white solid 3px;
 			border-top-width: 0px;
-/* 
+			/* 
 			border-radius: 3px;
 			border-bottom-right-radius: 30px;
 			border-bottom-left-radius: 30px; */
 		}
 
-		.mainbutton{
+		.mainbutton {
 			width: 30px;
 			height: 30px;
 			display: block;
@@ -466,16 +464,10 @@
 			position: relative;
 		}
 
-		.mainbutton svg{
+		.mainbutton svg {
 			display: block;
 			margin: auto;
 		}
-
-
-
-
-
-
 	</style>
 	<link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 	<meta charset='utf-8' />
@@ -498,6 +490,22 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/locale-all.min.js"></script>
 
+	<style>
+		.fc-list-heading td {
+			font-weight: 0;
+		}
+
+		.fc-list-view {
+			border-width: 0px;
+		}
+
+		.fc-unthemed .fc-divider,
+		.fc-unthemed .fc-list-heading td,
+		.fc-unthemed .fc-popover .fc-header {
+			background: rgba(238, 238, 238, 0);
+		}
+	</style>
+
 	<script>
 		// var today = new Date();
 		// var today = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
@@ -505,7 +513,6 @@
 		$(document).ready(function () {
 
 			$('#calendar').fullCalendar({
-
 				header: {
 					left: 'prev,next today',
 					right: 'title'
@@ -518,7 +525,7 @@
 				eventLimit: true, // allow "more" link when too many events
 				defaultDate: today,
 
-				defaultView: 'agendaDay',
+				defaultView: 'listDay',
 				timeFormat: 'H:mm',
 				nowIndicator: true,
 				minTime: "07:00:00",
@@ -649,11 +656,19 @@
 				}
 			});
 		</script>
-	
+
 		<div class="bottom">
 			<a href="../ome">
 				<div class="mainbutton">
-					<svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" style="fill: rgba(255, 255, 255, 1);"><path d="M3 13h1v7c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-7h1a1 1 0 0 0 .707-1.707l-9-9a.999.999 0 0 0-1.414 0l-9 9A1 1 0 0 0 3 13zm9-8.586 6 6V15l.001 5H6v-9.586l6-6z"></path><path d="M12 18c3.703 0 4.901-3.539 4.95-3.689l-1.9-.621c-.008.023-.781 2.31-3.05 2.31-2.238 0-3.02-2.221-3.051-2.316l-1.899.627C7.099 14.461 8.297 18 12 18z"></path></svg>
+					<svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%"
+						style="fill: rgba(255, 255, 255, 1);">
+						<path
+							d="M3 13h1v7c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-7h1a1 1 0 0 0 .707-1.707l-9-9a.999.999 0 0 0-1.414 0l-9 9A1 1 0 0 0 3 13zm9-8.586 6 6V15l.001 5H6v-9.586l6-6z">
+						</path>
+						<path
+							d="M12 18c3.703 0 4.901-3.539 4.95-3.689l-1.9-.621c-.008.023-.781 2.31-3.05 2.31-2.238 0-3.02-2.221-3.051-2.316l-1.899.627C7.099 14.461 8.297 18 12 18z">
+						</path>
+					</svg>
 				</div>
 			</a>
 		</div>

@@ -104,6 +104,17 @@ def ome():
         return render_template(
         "login.html",
     )
+@app.route("/links/")
+def links():
+    if ("email" in session):
+        session["upPlan"] = 0
+        return render_template(
+            "links.html",
+        )
+    else:
+        return render_template(
+        "login.html",
+    )
      
         
 @app.route('/data', methods=['GET', 'POST'])

@@ -432,7 +432,6 @@
 
     .center .login .co {
       width: 100%;
-      height: 35px;
       border: none;
       border-radius: 30px;
       width: calc(100% - 40px);
@@ -441,8 +440,10 @@
       /* background-color: #243946; */
       color: #fff;
 
-      font-size: 32px;
       text-align: center;
+
+      height: 26px;
+    font-size: 29px;
     }
 
     @keyframes rotate {
@@ -458,6 +459,47 @@
     .turning {
       animation: rotate linear 2s infinite;
     }
+
+
+    .bottom {
+			background: #243946;
+
+			position: absolute;
+			bottom: 0;
+			z-index: 5;
+			margin: auto;
+			display: inline-block;
+
+			width: 275px;
+			height: 43px;
+			transform: translate(-50%, -50%);
+			transform: scale(1.3);
+			overflow: hidden;
+
+			border: white solid 3px;
+			border-top-width: 0px;
+			/* 
+			border-radius: 3px;
+			border-bottom-right-radius: 30px;
+			border-bottom-left-radius: 30px; */
+		}
+
+		.mainbutton {
+			width: 30px;
+			height: 30px;
+			display: block;
+
+			border: 2px solid white;
+			border-radius: 64px;
+			margin: auto;
+			top: 3px;
+			position: relative;
+		}
+
+		.mainbutton svg {
+			display: block;
+			margin: auto;
+		}
   </style>
 
 </head>
@@ -530,25 +572,20 @@
 
 
 
-    <form action="/plann">
+    <form action="https://resto-aeu.moneweb.fr/clients#/login">
       <div class="login">
-        <div class="co">Connecté !</div>
-        <button class="login-button" onclick="loadingEyes()">Voir le planning</button>
+        <div class="co">Liens utiles !</div>
+        <button class="login-button" onclick="loadingEyes()">Recharge ta carte RU</button>
       </div>
     </form>
-    <form action="/notee">
+    <form action="mailto:junia.mobileprint@junia.com">
       <div class="login">
-        <button class="login-button" onclick="loadingEyes()">Voir les notes</button>
+        <button class="login-button" onclick="loadingEyes()">Imprime à Junia</button>
       </div>
     </form>
-    <form action="/abs">
+    <form action="https://www.instagram.com/lepointdedepartlille/?hl=fr">
       <div class="login">
-        <button class="login-button" onclick="loadingEyes()">Voir les absences</button>
-      </div>
-    </form>
-    <form action="/links">
-      <div class="login">
-        <button class="login-button" onclick="loadingEyes()">Voir les liens utiles</button>
+        <button class="login-button" onclick="loadingEyes()">Pas utile mais important</button>
       </div>
     </form>
     <!-- <form action="/moy">
@@ -620,6 +657,21 @@
           });
         }
       });</script>
+
+    <div class="bottom">
+      <a href="../ome">
+        <div class="mainbutton">
+          <svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" style="fill: rgba(255, 255, 255, 1);">
+            <path
+              d="M3 13h1v7c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-7h1a1 1 0 0 0 .707-1.707l-9-9a.999.999 0 0 0-1.414 0l-9 9A1 1 0 0 0 3 13zm9-8.586 6 6V15l.001 5H6v-9.586l6-6z">
+            </path>
+            <path
+              d="M12 18c3.703 0 4.901-3.539 4.95-3.689l-1.9-.621c-.008.023-.781 2.31-3.05 2.31-2.238 0-3.02-2.221-3.051-2.316l-1.899.627C7.099 14.461 8.297 18 12 18z">
+            </path>
+          </svg>
+        </div>
+      </a>
+    </div>
 
 </body>
 
