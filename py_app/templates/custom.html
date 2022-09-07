@@ -22,8 +22,13 @@
 
       text-align: center;
 
-      height: 26px;
-    font-size: 29px;
+      height: 24px;
+    font-size: 21px;
+    }
+
+    .center .login .login-button {
+      width: calc(40%);
+      margin: 2px 20px 0;
     }
   </style>
 
@@ -97,91 +102,22 @@
 
 
 
-    <form action="https://resto-aeu.moneweb.fr/clients#/login">
-      <div class="login">
-        <div class="co">Liens utiles !</div>
-        <button class="login-button" onclick="loadingEyes()">Recharge ta carte RU</button>
-      </div>
-    </form>
-    <form action="mailto:junia.mobileprint@junia.com">
-      <div class="login">
-        <button class="login-button" onclick="loadingEyes()">Imprime à Junia</button>
-      </div>
-    </form>
-    <form action="https://www.instagram.com/lepointdedepartlille/?hl=fr">
-      <div class="login">
-        <button class="login-button" onclick="loadingEyes()">Pas utile mais important</button>
-      </div>
-    </form>
-    <!-- <form action="/moy">
-      <div class="login">
-        <button class="login-button" onclick="loadingEyes()">🚧Voir les moyennes🚧</button>
-      </div>
-    </form> -->
-    <!-- partial -->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.min.js'></script>
-    <script>
-      let usernameInput = document.querySelector('.username');
-      let passwordInput = document.querySelector('.password');
-      let showPasswordButton = document.querySelector('.password-button');
-      let face = document.querySelector('.face');
-
-      function loadingEyes() {
-        document.querySelectorAll('.eye').forEach((z) => {
-          z.classList.add('turning')
-        })
-      }
-
-      passwordInput.addEventListener('focus', event => {
-        document.querySelectorAll('.hand').forEach(hand => {
-          hand.classList.add('hide');
-        });
-        document.querySelector('.tongue').classList.remove('breath');
-      });
-
-      passwordInput.addEventListener('blur', event => {
-        document.querySelectorAll('.hand').forEach(hand => {
-          hand.classList.remove('hide');
-          hand.classList.remove('peek');
-        });
-        document.querySelector('.tongue').classList.add('breath');
-      });
-
-      usernameInput.addEventListener('focus', event => {
-        let length = Math.min(usernameInput.value.length - 16, 19);
-        document.querySelectorAll('.hand').forEach(hand => {
-          hand.classList.remove('hide');
-          hand.classList.remove('peek');
-        });
-
-        face.style.setProperty('--rotate-head', `${-length}deg`);
-      });
-
-      usernameInput.addEventListener('blur', event => {
-        face.style.setProperty('--rotate-head', '0deg');
-      });
-
-      usernameInput.addEventListener('input', _.throttle(event => {
-        let length = Math.min(event.target.value.length - 16, 19);
-
-        face.style.setProperty('--rotate-head', `${-length}deg`);
-      }, 100));
-
-      showPasswordButton.addEventListener('click', event => {
-        if (passwordInput.type === 'text') {
-          passwordInput.type = 'password';
-          document.querySelectorAll('.hand').forEach(hand => {
-            hand.classList.remove('peek');
-            hand.classList.add('hide');
-          });
-        } else {
-          passwordInput.type = 'text';
-          document.querySelectorAll('.hand').forEach(hand => {
-            hand.classList.remove('hide');
-            hand.classList.add('peek');
-          });
-        }
-      });</script>
+    <div class="login" >
+      <div class="co">Personnalise ton app !</div>
+      <button style="background-image:linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)" class="login-button" onclick="loadBG(1)">oui</button>
+    </div>
+    <div class="login">
+      <button style="background-image:linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%)" class="login-button" onclick="loadBG(2)">oui</button>
+    </div>
+    <div class="login">
+      <button style="background-image:linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%)" class="login-button" onclick="loadBG(3)">oui</button>
+    </div>
+    <div class="login">
+      <button style="background-image:linear-gradient(135deg, #667eea 0%, #764ba2 100%)" class="login-button" onclick="loadBG(4)">oui</button>
+    </div>
+    <div class="login">
+      <button style="background-image:linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%)" class="login-button" onclick="loadBG(5)">oui</button>
+    </div>
 
     <div class="bottom">
       <a href="../ome">
@@ -201,3 +137,85 @@
 </body>
 
 </html>
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.min.js'></script>
+<script>
+  let usernameInput = document.querySelector('.username');
+  let passwordInput = document.querySelector('.password');
+  let showPasswordButton = document.querySelector('.password-button');
+  let face = document.querySelector('.face');
+
+  function loadBG(grad) {
+
+    // console.log(bd)
+    if (grad == 1) {
+      bd = "linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)"
+    }
+    if (grad == 2) {
+      bd = "linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%)"
+    }
+    if (grad == 3) {
+      bd = "linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%)"
+    }
+    if (grad == 4) {
+      bd = "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+    }
+    if (grad == 5) {
+      bd = "linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%)"
+    }
+    
+    document.body.style.backgroundImage = bd
+  }
+
+
+  passwordInput.addEventListener('focus', event => {
+    document.querySelectorAll('.hand').forEach(hand => {
+      hand.classList.add('hide');
+    });
+    document.querySelector('.tongue').classList.remove('breath');
+  });
+
+  passwordInput.addEventListener('blur', event => {
+    document.querySelectorAll('.hand').forEach(hand => {
+      hand.classList.remove('hide');
+      hand.classList.remove('peek');
+    });
+    document.querySelector('.tongue').classList.add('breath');
+  });
+
+  usernameInput.addEventListener('focus', event => {
+    let length = Math.min(usernameInput.value.length - 16, 19);
+    document.querySelectorAll('.hand').forEach(hand => {
+      hand.classList.remove('hide');
+      hand.classList.remove('peek');
+    });
+
+    face.style.setProperty('--rotate-head', `${-length}deg`);
+  });
+
+  usernameInput.addEventListener('blur', event => {
+    face.style.setProperty('--rotate-head', '0deg');
+  });
+
+  usernameInput.addEventListener('input', _.throttle(event => {
+    let length = Math.min(event.target.value.length - 16, 19);
+
+    face.style.setProperty('--rotate-head', `${-length}deg`);
+  }, 100));
+
+  showPasswordButton.addEventListener('click', event => {
+    if (passwordInput.type === 'text') {
+      passwordInput.type = 'password';
+      document.querySelectorAll('.hand').forEach(hand => {
+        hand.classList.remove('peek');
+        hand.classList.add('hide');
+      });
+    } else {
+      passwordInput.type = 'text';
+      document.querySelectorAll('.hand').forEach(hand => {
+        hand.classList.remove('hide');
+        hand.classList.add('peek');
+      });
+    }
+  });</script>
