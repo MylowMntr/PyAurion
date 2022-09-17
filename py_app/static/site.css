@@ -458,6 +458,8 @@ body {
 .mainbutton svg {
     display: block;
     margin: auto;
+    left: 2%;
+    position: relative;
 }
 
 @keyframes rotate {
@@ -473,3 +475,8 @@ body {
   .turning {
     animation: rotate linear 2s infinite;
   }
+
+
+
+
+

@@ -44,6 +44,9 @@
 		.fc-unthemed .fc-popover .fc-header {
 			background: rgba(238, 238, 238, 0);
 		}
+		.fc-unthemed .fc-list-empty {
+			background-color: none;
+			}
 	</style>
 
 	<script>
@@ -75,9 +78,9 @@
 				hiddenDays: [0],
 				events: {
 					url: '/data',
-					error: function () {
-						$('#script-warning').show();
-					}
+					// error: function () {
+					// 	$('#script-warning').show();
+					// }
 
 				},
 				loading: function (bool) {
@@ -197,9 +200,48 @@
 			});
 		</script>
 
+		<style>
+			div.mainbutton:nth-child(1) {
+				position: absolute;
+				left: 61px;
+			}
+
+			div.mainbutton:nth-child(2) {
+				position: absolute;
+				right: 80px;
+			}
+
+			div.mainbutton:nth-child(1) {
+				width: 70px;
+				font-size: 120%;
+				color: white;
+				justify-content: center;
+				text-align: center;
+				display: flex;
+			}
+
+			div.mainbutton:nth-child(1)>a:nth-child(1) {
+				display: flex;
+				list-style: none;
+				color: white;
+				text-decoration: none;
+			}
+
+			div.mainbutton:nth-child(1)>a:nth-child(1)>p:nth-child(1) {
+				position: relative;
+				margin: auto;
+			}
+		</style>
+
 		<div class="bottom">
-			<a href="../ome">
-				<div class="mainbutton">
+
+			<div class="mainbutton">
+				<a href="../reload">
+					<p>Reload</p>
+				</a>
+			</div>
+			<div class="mainbutton">
+				<a href="../ome">
 					<svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%"
 						style="fill: rgba(255, 255, 255, 1);">
 						<path
@@ -209,8 +251,9 @@
 							d="M12 18c3.703 0 4.901-3.539 4.95-3.689l-1.9-.621c-.008.023-.781 2.31-3.05 2.31-2.238 0-3.02-2.221-3.051-2.316l-1.899.627C7.099 14.461 8.297 18 12 18z">
 						</path>
 					</svg>
-				</div>
-			</a>
+				</a>
+			</div>
+
 		</div>
 	</div>
 </body>

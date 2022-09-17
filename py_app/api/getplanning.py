@@ -141,8 +141,8 @@ def POSTplan(viewS, cookies, baseURL, start, end):
     except ValueError:
         end = datetime.strptime(str(end),'%Y-%m-%d')
     end = int(end.timestamp() * 1000)
-    end = end + 2*2629800000
-
+    end = end + 1*2629800000
+    
     #calcul de l'offset 
     tz = datetime.now()
     timezone = pytz.timezone("Europe/Paris")

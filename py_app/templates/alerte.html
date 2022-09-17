@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>PyAurion</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+  <link rel="stylesheet" href="../static/site.css" />
+  <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <style>
+    .center .login .co {
+      width: 100%;
+      height: 35px;
+      border: none;
+      border-radius: 30px;
+      width: calc(100% - 40px);
+      margin: 20px 20px 0;
+      outline: none;
+      /* background-color: #243946; */
+      color: #fff;
+
+      font-size: 32px;
+      text-align: center;
+    }
+
+    .login>p:nth-child(2) {
+      padding: 20px;
+      margin-top: 50px;
+    }
+
+
+    .mainbutton {
+      width: 72px;
+      height: 34px;
+      display: block;
+      border: 2px solid white;
+      border-radius: 64px;
+      margin: auto;
+      position: relative;
+      text-align: center;
+      justify-content: center;
+      margin: auto;
+    }
+
+    .mainbutton > a:nth-child(1) > p:nth-child(1) {
+      position: relative;
+      top: 20%;
+      color: green;
+      text-decoration: none;
+      font-size: 150%;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- partial:index.partial.html -->
+  <div class="center">
+
+
+
+
+    <div class="login">
+      <div class="co">Bienvenue sur PyAurion !</div>
+      <p></strong>Bonjour toi ! Merci d'utiliser PyAurion 💖</strong> <br>
+        </strong>Ceci est un message important concernant l'utilisation de PyAurion:</strong> <br><br>
+        PyAurion est basé sur le site Aurion (en l'occurrence, aurion.junia.com). En aucun cas, cette application
+        remplace le Aurion officiel ! <br><br>
+        Au sujet de votre sécurité, vos identifiants ne sont pas enregistrés sur mon serveur, mais uniquement sur vos
+        appareils. Pour les supprimer, il suffit de vider le cache de l'application ou de la page du site. <br>
+        Je n'enregistre aucune donnée, je ne fais que traiter les données ! <br><br>
+        Pour tout problème avec l'application, toute question, n'hésitez pas à me contacter via Discord :
+        <strong>Mylow#9595</strong> ou par mail <strong>infos@mylow.fr</strong><br>
+        Le code de l'application est disponible sur mon GitHub.<br><br>
+        Merci à vous pour votre confiance !<br>
+        Milo Montuori✌️<br><br>
+        En cliquant sur "Ok !", vous acceptez l'utilisation de vos identifiants Aurion par PyAurion.
+      </p>
+    </div>
+    <div class="mainbutton">
+      <a href="../ok">
+        <p>Ok !</p>
+      </a>
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.min.js'></script>
+    <script>
+      let usernameInput = document.querySelector('.username');
+      let passwordInput = document.querySelector('.password');
+      let showPasswordButton = document.querySelector('.password-button');
+      let face = document.querySelector('.face');
+
+      function loadingEyes() {
+        document.querySelectorAll('.eye').forEach((z) => {
+          z.classList.add('turning')
+        })
+      }
+
+      passwordInput.addEventListener('focus', event => {
+        document.querySelectorAll('.hand').forEach(hand => {
+          hand.classList.add('hide');
+        });
+        document.querySelector('.tongue').classList.remove('breath');
+      });
+
+      passwordInput.addEventListener('blur', event => {
+        document.querySelectorAll('.hand').forEach(hand => {
+          hand.classList.remove('hide');
+          hand.classList.remove('peek');
+        });
+        document.querySelector('.tongue').classList.add('breath');
+      });
+
+      usernameInput.addEventListener('focus', event => {
+        let length = Math.min(usernameInput.value.length - 16, 19);
+        document.querySelectorAll('.hand').forEach(hand => {
+          hand.classList.remove('hide');
+          hand.classList.remove('peek');
+        });
+
+        face.style.setProperty('--rotate-head', `${-length}deg`);
+      });
+
+      usernameInput.addEventListener('blur', event => {
+        face.style.setProperty('--rotate-head', '0deg');
+      });
+
+      usernameInput.addEventListener('input', _.throttle(event => {
+        let length = Math.min(event.target.value.length - 16, 19);
+
+        face.style.setProperty('--rotate-head', `${-length}deg`);
+      }, 100));
+
+      showPasswordButton.addEventListener('click', event => {
+        if (passwordInput.type === 'text') {
+          passwordInput.type = 'password';
+          document.querySelectorAll('.hand').forEach(hand => {
+            hand.classList.remove('peek');
+            hand.classList.add('hide');
+          });
+        } else {
+          passwordInput.type = 'text';
+          document.querySelectorAll('.hand').forEach(hand => {
+            hand.classList.remove('hide');
+            hand.classList.add('peek');
+          });
+        }
+      });</script>
+
+</body>
+
+</html>
