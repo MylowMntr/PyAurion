@@ -8,5 +8,10 @@
 .env.test.local
 .env.production.local
 
+
 # cache
 /__pycache__
+Rapport_PyAurion.docx
+ngrok.exe
+/py_app/__pycache__
+/py_app/api/__pycache__
