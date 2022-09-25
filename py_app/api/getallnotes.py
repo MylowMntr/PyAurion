@@ -184,22 +184,7 @@ def POSTnote(viewS, cookies,baseURL):
     x = x[3].split("]]")
     # return(x[0])
 
-    # print(x[0])
-
-    soup = BeautifulSoup(x[0], "html.parser")
-
-    # txt = soup.select('span:-soup-contains("2223")')
-    txt = soup.find_all('tr')
-    final = []
-    
-    for i in txt:
-        if '''<span class="preformatted">2223_''' in str(i):
-            final.append(str(i))
-    
-    
-    final = ' '.join(final)
-    
-    return final
+    return(x[0])
 
     
 

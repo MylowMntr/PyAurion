@@ -4,7 +4,7 @@ import locale
 locale.setlocale(locale.LC_ALL, "fr_FR.utf-8")
 from flask import Flask, render_template, request, session, make_response
 from . import app
-from .api import getnotes, getplanning, validelogs, getabs, compress, uncompress
+from .api import getnotes, getallnotes, getplanning, validelogs, getabs, compress, uncompress
 import json
 from pathlib import Path
 import urllib.parse
@@ -30,6 +30,19 @@ def notee():
         return render_template(
             "log.html",
         )
+
+@app.route("/notees/")
+def notees():
+    if "email" in session:
+        return render_template(
+            "notees.html",
+            notes=getallnotes.main(session["email"], session["password"]),
+        )
+    else:
+        return render_template(
+            "log.html",
+        )
+
 
 
 @app.route("/abs/")
