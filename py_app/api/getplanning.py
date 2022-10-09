@@ -56,10 +56,17 @@ def ViewState(page):
     menuid = menuid.split("form:sidebar_menuid':'")
     menuid = menuid[1].split("'})")
     menuid = menuid[0]
-    # print(int(menuid))
+    
+    
+    formid = soup.findAll('div', attrs={'class':'schedule'})
+    if formid != []:
+        formid = str(formid)
+        formid = formid.split('''<div class="schedule" id="form:j_idt''')
+        formid = formid[1].split('''"><div id="form:''')
+        formid = formid[0]
     
     # print(viewS)
-    return viewS,menuid
+    return viewS,menuid,formid
 
 #requete POST de mainpage (pour planning)
 def POSTmain(viewS, cookies,baseURL):
@@ -100,7 +107,11 @@ def GETplan(cookies,baseURL):
 
 def POSTplan(viewS, cookies, baseURL, start, end):
     
-    viewS = ViewState(GETplan(cookies,baseURL))[0]
+    viewS = ViewState(GETplan(cookies,baseURL))
+    formId = viewS[2]
+    viewS = viewS[0]
+    
+    
 
     #Nbr de la semaine actuelle
     d = date.today()
@@ -155,10 +166,10 @@ def POSTplan(viewS, cookies, baseURL, start, end):
     week_number = str(week_number)
     start = str(start)
     end = str(end)
-    formId = "117"
+    # formId = viewS[2]
     tz = str(-tz)
     
-    print(start, end, tz, week_number, year_number, formId)
+    # print(start, end, tz, week_number, year_number, formId)
     
 
     payload = ("javax.faces.partial.ajax=true&javax.faces.source=form%3Aj_idt" + formId
@@ -175,16 +186,6 @@ def POSTplan(viewS, cookies, baseURL, start, end):
                 + "_view=agendaWeek&form%3AoffsetFuseauNavigateur=" + tz
                 + "&form%3Aonglets_activeIndex=0&form%3Aonglets_scrollState=0&form%3Aj_idt236_focus=&form%3Aj_idt236_input=44323"
                 + "&javax.faces.ViewState="+ urllib.parse.quote(viewS))
-    
-    # &form%3Aj_idt117_start=1653256800000 1658700000000
-    # &form%3Aj_idt117_end=1653775200000
-    # &form=form
-    # &form%3AlargeurDivCenter=
-    # &form%3Adate_input=23%2F05%2F2022&
-    # form%3Aweek=21-2022
-    # &form%3Aj_idt117_view=agendaWeek&form%3AoffsetFuseauNavigateur=-7200000&
-    # form%3Aonglets_activeIndex=0&form%3Aonglets_scrollState=0&form%3Aj_idt236_focus=&form%3Aj_idt236_input=44323
-    # print(payload)
     
     conn = http.client.HTTPSConnection("aurion.junia.com")
     headers = {"Accept": "application/xml, text/xml, */*; q=0.01",

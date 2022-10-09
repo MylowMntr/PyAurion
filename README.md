@@ -8,11 +8,11 @@ Projet personnel de connexion à Aurion en Python !
 --> Pas d'iOS (question de prix)
 
 ## A faire
-Faire un système de moyennes par évaluation
+-[]Faire un système de moyennes par évaluation
 
-Diviser les notes et les absences par années et non "tout d'un coup"
+-[x]Diviser les notes et les absences par années et non "tout d'un coup"
 
-Si vous avez des propositions, n'hésitez pas à me contacter <3
+-[]Si vous avez des propositions, n'hésitez pas à me contacter <3
 
 
 ## Description

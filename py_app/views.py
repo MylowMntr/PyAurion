@@ -134,7 +134,7 @@ def return_data():
         CalData = compress.main(start, end, session["email"], session["password"])
         resp = make_response(CalData)
         resp.set_cookie("data", CalData, max_age=378432000)
-        final = uncompress.main(CalData)
+        # final = uncompress.main(CalData)
         return resp
 
     datacompress = request.cookies.get("data")
