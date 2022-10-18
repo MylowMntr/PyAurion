@@ -183,11 +183,16 @@ def POSTnote(viewS, cookies,baseURL):
     x = x.split("[CDATA[")
     x = x[3].split("]]")
     # return(x[0])
-
-    return(x[0])
+    
+    
+    xml_data = '''<table><tbody>'''+str(x[0])+'''</tbody></table>'''
+    
+    s = BeautifulSoup(xml_data, "html.parser")
+    result =  [[[i.text for i in b.find_all('span')] for b in a.find_all('td')] for a in s.find_all('tr')]
+    
+    return json.dumps(result, ensure_ascii=False)   
 
     
-
 
 
 def main(username,password):

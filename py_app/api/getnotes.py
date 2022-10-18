@@ -199,7 +199,14 @@ def POSTnote(viewS, cookies,baseURL):
     
     final = ' '.join(final)
     
-    return final
+    
+    
+    xml_data = '''<table><tbody>'''+(final)+'''</tbody></table>'''
+    
+    s = BeautifulSoup(xml_data, "html.parser")
+    result =  [[[i.text for i in b.find_all('span')] for b in a.find_all('td')] for a in s.find_all('tr')]
+    
+    return json.dumps(result, ensure_ascii=False)   
 
     
 

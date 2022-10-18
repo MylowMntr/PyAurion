@@ -2,6 +2,7 @@ import http.client
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime, date, timedelta
+from bs4 import BeautifulSoup as soup
 import urllib
 import pytz
 import json
@@ -135,7 +136,15 @@ def GETnote(cookies,baseURL):
     y = rep.split('''<span id="form:dureeAbs" class="Fs14">''')
     y = y[1].split("</span></td>")
     # print(x[0])
-    return(x[0],y[0])
+    
+
+    xml_data = '''<table>'''+str(x[0])+'''</table>'''
+
+    s = soup(xml_data, 'html.parser')
+    result =  [[i.text for i in b.find_all('td')] for b in s.find_all('tr')]    
+
+
+    return(json.dumps(result, ensure_ascii=False),y[0])
     
 
 

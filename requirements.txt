@@ -1,8 +1,0 @@
-lxml
-requests
-bs4
-datetime
-pytz
-flask
-flaskwebgui
-gunicorn
