@@ -2,17 +2,23 @@
 Projet personnel de connexion à Aurion en Python !
 
 
-## Actuellement
---> Actuellement disponible [ici](https://mylow.fr/pa)
---> Application Android [ici](https://play.google.com/store/apps/details?id=fr.mylow.pyaurion)
---> Pas d'iOS (question de prix)
+## Application
+-[x]Actuellement disponible [ici](https://mylow.fr/pa)
 
-## A faire
-- [ ] Faire un système de moyennes par évaluation
+-[x]Application Android [ici](https://play.google.com/store/apps/details?id=fr.mylow.pyaurion)
 
-- [x] Diviser les notes et les absences par années et non "tout d'un coup"
+-[]Application iOS EN COURS DE DEPLOIMENT (Bientôt disponible)
 
-- [ ] Si vous avez des propositions, n'hésitez pas à me contacter <3
+## Todo
+-[]Faire un système de moyennes par évaluation
+
+-[]EN COURS (branch PyAurionClienServer) : Diviser côté client et côté serveur
+
+-[x]Diviser les notes et les absences par années et non "tout d'un coup"
+
+-[x]Ajouter un changement de vue possible pour le planning
+
+-[]Si vous avez des propositions, n'hésitez pas à me contacter <3
 
 
 ## Description

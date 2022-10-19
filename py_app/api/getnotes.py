@@ -99,6 +99,8 @@ def POSTmainn(viewS, cookies,baseURL):
                 "form%3Aj_idt772_focus=&form%3Aj_idt772_input=44323&" +
                 "form%3Asidebar=form%3Asidebar&form%3Asidebar_menuid=" + menuid
                 + "&javax.faces.ViewState=" + viewS)
+    
+    # print(payload)
     headers = {
         'Content-type': "application/x-www-form-urlencoded",
         'Connection': "keep-alive",
@@ -111,7 +113,7 @@ def POSTmainn(viewS, cookies,baseURL):
     resR = res.read()
     # print(resS)
     # print(resH)
-    # print(resR.decode('utf-8'))
+    # print(resR)
     pass
 
 #requete GET avant POST
@@ -213,7 +215,7 @@ def main(username,password):
     viewS = ViewState(GETmain(cookies,baseURL))[0]
     
     GETmain(cookies,baseURL)
-    POSTmain(viewS,cookies,baseURL)
+    # POSTmain(viewS,cookies,baseURL)
     POSTmainn(viewS,cookies,baseURL)
     GETnote(cookies,baseURL)
     

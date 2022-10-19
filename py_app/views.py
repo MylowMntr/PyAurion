@@ -4,7 +4,7 @@ import locale
 locale.setlocale(locale.LC_ALL, "fr_FR.utf-8")
 from flask import Flask, render_template, request, session, make_response
 from . import app
-from .api import getnotes, getallnotes, getplanning, validelogs, getabs, compress, uncompress
+from .api import getnotes, getallnotes, getplanning, validelogs, getabs, compress, uncompress, encrypt, deencrypt
 import json
 from pathlib import Path
 import urllib.parse
@@ -12,19 +12,19 @@ import urllib.parse
 
 @app.route("/", methods=["GET", "POST"])
 def home():
-    if "email" in request.cookies:
-        session["email"] = request.cookies.get("email")
-        session["password"] = request.cookies.get("password")
+    if "a" in request.cookies:
+        session["a"] = deencrypt.main(request.cookies.get("a"))
+        session["b"] = deencrypt.main(request.cookies.get("b"))
         return render_template("ome.html")
     return alerte()
 
 
 @app.route("/notee/")
 def notee():
-    if "email" in session:
+    if "a" in session:
         return render_template(
             "notee.html",
-            notes=getnotes.main(session["email"], session["password"]),
+            notes=getnotes.main(session["a"], session["b"]),
         )
     else:
         return render_template(
@@ -33,10 +33,10 @@ def notee():
 
 @app.route("/notees/")
 def notees():
-    if "email" in session:
+    if "a" in session:
         return render_template(
             "notees.html",
-            notes=getallnotes.main(session["email"], session["password"]),
+            notes=getallnotes.main(session["a"], session["b"]),
         )
     else:
         return render_template(
@@ -47,10 +47,10 @@ def notees():
 
 @app.route("/abs/")
 def abs():
-    if "email" in session:
+    if "a" in session:
         return render_template(
             "abs.html",
-            abs=getabs.main(session["email"], session["password"]),
+            abs=getabs.main(session["a"], session["b"]),
         )
     else:
         return render_template(
@@ -60,7 +60,7 @@ def abs():
 
 @app.route("/plann/")
 def plann():
-    if "email" in session:
+    if "a" in session:
         return render_template(
             "plann.html",
         )
@@ -72,8 +72,8 @@ def plann():
 
 @app.route("/ome/")
 def ome():
-    if "email" in session:
-        if "verif" not in request.cookies:
+    if "a" in session:
+        if "z" not in request.cookies:
             return render_template(
                 "alerte.html",
             )
@@ -89,7 +89,7 @@ def ome():
 
 @app.route("/links/")
 def links():
-    if "email" in session:
+    if "a" in session:
         return render_template(
             "links.html",
         )
@@ -101,7 +101,7 @@ def links():
 
 @app.route("/custom/")
 def custom():
-    if "email" in session:
+    if "a" in session:
         return render_template(
             "custom.html",
         )
@@ -111,33 +111,19 @@ def custom():
         )
 
 
-# @app.route('/data', methods=['GET', 'POST'])
-# def return_data():
-#     start = request.args.get('start')
-#     end = request.args.get('end')
-#     # print(start,end)
-
-#     if ("data" not in session or session["data"] == "[]" or session["upPlan"] == 0):
-#         session["data"] = getplanning.main(start,end,session["email"],session["password"])
-#         session["upPlan"] = 1
-
-#     # print(session["data"])
-#     return session["data"]
-
-
 @app.route("/data", methods=["GET", "POST"])
 def return_data():
     start = request.args.get("start")
     end = request.args.get("end")
 
-    if "data" not in request.cookies:
-        CalData = compress.main(start, end, session["email"], session["password"])
+    if "c" not in request.cookies:
+        CalData = compress.main(start, end, session["a"], session["b"])
         resp = make_response(CalData)
-        resp.set_cookie("data", CalData, max_age=378432000)
+        resp.set_cookie("c", CalData, max_age=378432000)
         # final = uncompress.main(CalData)
         return resp
 
-    datacompress = request.cookies.get("data")
+    datacompress = request.cookies.get("c")
     datacompress = uncompress.main(datacompress)
     return datacompress
 
@@ -145,14 +131,14 @@ def return_data():
 @app.route("/reload", methods=["GET", "POST"])
 def reload():
     resp = make_response(render_template("plann.html"))
-    resp.set_cookie("data", "", expires=0)
+    resp.set_cookie("c", "", expires=0)
     return resp
 
 
 @app.route("/alerte/", methods=["GET", "POST"])
 def alerte():
-    if "verif" in request.cookies:
-        if "email" in session:
+    if "z" in request.cookies:
+        if "a" in session:
             return render_template(
                 "ome.html",
             )
@@ -168,16 +154,16 @@ def alerte():
         
 @app.route("/ok/", methods=["GET","POST"])
 def ok():
-    if "verif" not in request.cookies:
-        if "email" in session:
+    if "z" not in request.cookies:
+        if "a" in session:
             resp = make_response(render_template("ome.html",))
         else:
             resp = make_response(render_template("log.html",))
-        resp.set_cookie("verif", "1", max_age=378432000)
+        resp.set_cookie("z", "1", max_age=378432000)
         return resp
 
     else:
-        if "email" in session:
+        if "a" in session:
             return render_template(
                 "ome.html",
             )
@@ -191,33 +177,27 @@ def ok():
 def log():
     # handle the POST request
     if request.method == "POST":
-        session["email"] = request.form.get("email")
-        session["email"] = urllib.parse.quote(session["email"])
+        session["a"] = request.form.get("a")
+        session["a"] = urllib.parse.quote(session["a"])
 
-        session["password"] = request.form.get("password")
-        session["password"] = urllib.parse.quote(session["password"])
+        session["b"] = request.form.get("b")
+        session["b"] = urllib.parse.quote(session["b"])
 
-        # session["stocknote"] = request.form.getlist('note')
-        # if (session["stocknote"] != []):
-        #     session["stocknote"] = True
-        # else:
-        #     session["stocknote"] = False
-        # print(session["stocknote"])
-        if validelogs.main(0, session["email"], session["password"]) != True:
+        if validelogs.main(0, session["a"], session["b"]) != True:
             error = "Identifiants invalides ! Réessaye"
             return render_template("log.html", error=error)
 
-        if "verif" in request.cookies:
+        if "z" in request.cookies:
             resp = make_response(render_template("ome.html"))
         else:
             resp = make_response(render_template("alerte.html"))
-            
-        resp.set_cookie("email", session["email"], max_age=378432000)
-        resp.set_cookie("password", session["password"], max_age=378432000)
+                
+        resp.set_cookie("a", encrypt.main(session["a"]), max_age=378432000, samesite="Strict", secure=True)
+        resp.set_cookie("b", encrypt.main(session["b"]), max_age=378432000, samesite="Strict", secure=True)
         return resp
 
     # otherwise handle the GET request
-    if "verif" in request.cookies:
+    if "z" in request.cookies:
         return render_template(
             "log.html",
         )

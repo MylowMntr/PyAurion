@@ -15,6 +15,10 @@
 ngrok.exe*
 /py_app/__pycache__/*
 /py_app/api/__pycache__/*
+/py_app/api/deencrypt*
+/py_app/api/encrypt*
+
+
 
 Dockerfile*
 fly*

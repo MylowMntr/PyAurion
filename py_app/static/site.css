@@ -38,7 +38,7 @@ body {
     height: 525px;
     border-radius: 3px;
     /* transform: translate(-50%, -50%); */
-    transform: scale(1.3);
+    transform: scale(1.8);
     overflow: hidden;
 
     border: white solid 3px;
@@ -46,9 +46,27 @@ body {
     border-radius: 30px;
 }
 
-@media screen and (max-height: 500px) {
+@media screen and (max-height: 1081px) {
     .center {
-        transform: translate(0, -10%) scale(0.7);
+        transform: scaleY(1.7) scaleX(1.8);
+    }
+}
+
+@media screen and (max-height: 1000px) {
+    .center {
+        transform: scale(1.4);
+    }
+}
+
+@media screen and (max-height: 785px) {
+    .center {
+        transform: scale(1);
+    }
+}
+
+@media screen and (max-height: 545px) {
+    .center {
+        transform: scale(0.8);
     }
 }
 

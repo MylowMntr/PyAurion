@@ -4,6 +4,5 @@ app.secret_key = 'super secret key'
 app.config['SESSION_TYPE'] = 'filesystem'
 
 if __name__ == "__main__":
-
-    app.debug = True
+    app.debug = False
     app.run()

@@ -184,16 +184,21 @@
 		<style>
 			div.mainbutton:nth-child(1) {
 				position: absolute;
-				left: 61px;
+				left: 43px;
 			}
 
 			div.mainbutton:nth-child(2) {
 				position: absolute;
-				right: 80px;
+				right: 46px;
 			}
 
-			div.mainbutton:nth-child(1) {
-				width: 70px;
+			div.mainbutton:nth-child(3) {
+				position: absolute;
+				right: 90px;
+			}
+
+			div.mainbutton:nth-child(1),div.mainbutton:nth-child(3) {
+				width: 63px;
 				font-size: 120%;
 				color: white;
 				justify-content: center;
@@ -201,17 +206,19 @@
 				display: flex;
 			}
 
-			div.mainbutton:nth-child(1)>a:nth-child(1) {
+
+			div.mainbutton:nth-child(1)>a:nth-child(1),div.mainbutton:nth-child(3)>a:nth-child(1) {
 				display: flex;
 				list-style: none;
 				color: white;
 				text-decoration: none;
 			}
 
-			div.mainbutton:nth-child(1)>a:nth-child(1)>p:nth-child(1) {
+			div.mainbutton:nth-child(1)>a:nth-child(1)>p:nth-child(1), div.mainbutton:nth-child(3)>a:nth-child(1)>p:nth-child(1) {
 				position: relative;
 				margin: auto;
 			}
+			
 		</style>
 
 		<div class="bottom">
@@ -234,6 +241,25 @@
 					</svg>
 				</a>
 			</div>
+			<div class="mainbutton">
+				<a onclick="changeView()">
+					<p>Change View</p>
+				</a>
+			</div>
+			<script>
+				// def function
+				k = 1;
+				function changeView() {
+					if (k == 0) {
+						$('#calendar').fullCalendar( 'changeView', 'listDay');
+						k = 1;
+					}
+					else {
+						$('#calendar').fullCalendar( 'changeView', 'agendaWeek');
+						k = 0;
+					}
+				}
+			</script>
 
 		</div>
 	</div>
